@@ -1,0 +1,22 @@
+{
+   "capabilities":[
+      {
+         "browserName":"firefox",
+         "marionette":true,
+         "version":76,
+         "maxInstances":3,
+         "seleniumProtocol":"WebDriver"
+      },
+      {
+         "browserName":"chrome",
+         "version":81,
+         "maxInstances":3,
+         "seleniumProtocol":"WebDriver"
+      }
+   ],
+ 
+   "register":true,
+   "hub":"http://localhost:4444",
+ 
+   "based-on":"https://github.com/SeleniumHQ/selenium/blob/selenium-3.141.59/java/server/src/org/openqa/grid/common/defaults/DefaultNodeWebDriver.json"
+}
