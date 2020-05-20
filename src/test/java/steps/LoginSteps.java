@@ -35,15 +35,19 @@ public class LoginSteps
 	}
 	
 	@Before
-	public void openBrowser() {
+	public void openBrowser() 
+	{
+		System.setProperty("browser", "firefox");	
+		propFileReader = new PropertyFileReader();
 		driver = WebDriverFactory.createWebDriver();
 	}
 
-	@After
-	public void closeBrowser() {
-		if (driver != null)
-			driver.close();
-	}
+	
+	//@After
+	//public void closeBrowser() {
+	//	if (driver != null)
+	//		driver.close();
+	//}
 	
 	
 	
@@ -144,12 +148,18 @@ public class LoginSteps
 	{
 		homePage.waitForPageToSettle("//*[@id=\"container\"]/div[3]/div[2]/div");
 		assertTrue(homePage.isLoggedIn());
+		
+		if (driver != null)
+			 driver.close();
 	}
 	
 	@Then("I should not be logged in")
 	public void I_Should_not_be_logged_in()
 	{
 		assertFalse(homePage.isLoggedIn());
+		
+		if (driver != null)
+			 driver.close();
 	}
 	
 	@Then("I should be logged out")
@@ -158,5 +168,8 @@ public class LoginSteps
 		//waiting for signout page nav to load
 		homePage.waitForPageToSettle("//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[1]");
 		assertFalse(homePage.isLoggedIn());
+		
+		if (driver != null)
+			 driver.close();
 	}
 }

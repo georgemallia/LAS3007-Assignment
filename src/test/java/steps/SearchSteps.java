@@ -34,15 +34,18 @@ public class SearchSteps
 	}
 	
 	@Before
-	public void openBrowser() {
+	public void openBrowser() 
+	{
+		System.setProperty("browser", "firefox");	
+		propFileReader = new PropertyFileReader();
 		driver = WebDriverFactory.createWebDriver();
 	}
 
-	@After
-	public void closeBrowser() {
-		if (driver != null)
-			driver.close();
-	}
+	//@After
+	//public void closeBrowser() {
+	//	if (driver != null)
+	//		driver.close();
+	//}
 	
 	@Given("that the user is logged in")
 	public void that_the_user_is_logged_in()
@@ -118,6 +121,9 @@ public class SearchSteps
 		homePage.waitForPageToSettle("//section[@id='shows-results']/h1");
 		assertTrue(searchPage.resultsTitle.isDisplayed());
 		assertTrue(searchPage.getNumberOfResults() >= 0);
+		
+		if (driver != null)
+		 driver.close();
 	}
 	
 	@Then("no results should be displayed")
@@ -126,6 +132,9 @@ public class SearchSteps
 		homePage.waitForPageToSettle("//div[@id='search-results-container']/div");
 		assertTrue(searchPage.noresultsTab.isDisplayed());
 		assertTrue(searchPage.getNumberOfResults() == 0);
+		
+		if (driver != null)
+			 driver.close();
 	}
 
 }
