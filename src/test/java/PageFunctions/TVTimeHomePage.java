@@ -11,7 +11,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class TVTimeHomePage
 {
 	protected WebDriver driver;
-	private static final String URL = "https://www.tripadvisor.com/";
 	
 	@FindBy(xpath="//*[@id=\"home-link\"]/img")
 	private WebElement homeBtn;

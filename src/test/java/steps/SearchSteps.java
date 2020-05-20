@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
 
 import PageFunctions.TVTimeHomePage;
@@ -25,14 +24,7 @@ public class SearchSteps
 	TVTimeLogin loginPage;
 	TVTimeSearch searchPage;
 	PropertyFileReader propFileReader;
-	
-	@BeforeAll
-	public void setup() throws Exception
-	{
-		System.setProperty("browser", "firefox");	
-		propFileReader = new PropertyFileReader();
-	}
-	
+		
 	@Before
 	public void openBrowser() 
 	{
@@ -41,11 +33,14 @@ public class SearchSteps
 		driver = WebDriverFactory.createWebDriver();
 	}
 
-	//@After
-	//public void closeBrowser() {
-	//	if (driver != null)
-	//		driver.close();
-	//}
+	@After
+    public void closeBrowser() 
+	{
+		if (driver != null)
+		{
+			driver.close();
+		}
+	}
 	
 	@Given("that the user is logged in")
 	public void that_the_user_is_logged_in()
@@ -121,9 +116,6 @@ public class SearchSteps
 		homePage.waitForPageToSettle("//section[@id='shows-results']/h1");
 		assertTrue(searchPage.resultsTitle.isDisplayed());
 		assertTrue(searchPage.getNumberOfResults() >= 0);
-		
-		if (driver != null)
-		 driver.close();
 	}
 	
 	@Then("no results should be displayed")
@@ -132,9 +124,6 @@ public class SearchSteps
 		homePage.waitForPageToSettle("//div[@id='search-results-container']/div");
 		assertTrue(searchPage.noresultsTab.isDisplayed());
 		assertTrue(searchPage.getNumberOfResults() == 0);
-		
-		if (driver != null)
-			 driver.close();
 	}
 
 }
