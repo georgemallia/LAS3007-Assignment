@@ -1,4 +1,3 @@
-@RunFirst
 Feature: TvTime_Login
 
   Scenario: Sucessful Signin

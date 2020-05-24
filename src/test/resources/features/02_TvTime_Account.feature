@@ -1,6 +1,5 @@
 Feature: TvTime_Account
 
-  @RunAfter
   Scenario: Account Details Change
     Given the user is logged in
     And he accesses the account page

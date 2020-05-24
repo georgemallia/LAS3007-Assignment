@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import PageFunctions.TVTimeHomePage;
 import PageFunctions.TVTimeLogin;
 import PageFunctions.TVTimeSearch;
+import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
 import Utilities.WebDriverFactory;
 import io.cucumber.java.After;
@@ -24,12 +25,14 @@ public class SearchSteps
 	TVTimeLogin loginPage;
 	TVTimeSearch searchPage;
 	PropertyFileReader propFileReader;
+	CommonUtils utils;
 		
 	@Before
 	public void openBrowser() 
 	{
 		System.setProperty("browser", "firefox");	
 		propFileReader = new PropertyFileReader();
+		utils = new CommonUtils();
 		driver = WebDriverFactory.createWebDriver();
 	}
 
@@ -58,7 +61,7 @@ public class SearchSteps
 		}
 		
 		homePage = loginPage.loginBtnClick();
-		homePage.waitForPageToSettle("//*[@id=\"container\"]/div[3]/div[2]/div");
+		utils.waitForPageToSettleByXpath("//*[@id=\\\"container\\\"]/div[3]/div[2]/div", driver);
 	}
 	
 	
@@ -113,7 +116,7 @@ public class SearchSteps
 	@Then("results should be displayed")
 	public void results_should_be_displayed()
 	{
-		homePage.waitForPageToSettle("//section[@id='shows-results']/h1");
+		utils.waitForPageToSettleByXpath("//section[@id='shows-results']/h1", driver);
 		assertTrue(searchPage.resultsTitle.isDisplayed());
 		assertTrue(searchPage.getNumberOfResults() >= 0);
 	}
@@ -121,7 +124,7 @@ public class SearchSteps
 	@Then("no results should be displayed")
 	public void no_results_should_be_displayed()
 	{
-		homePage.waitForPageToSettle("//div[@id='search-results-container']/div");
+		utils.waitForPageToSettleByXpath("//div[@id='search-results-container']/div", driver);
 		assertTrue(searchPage.noresultsTab.isDisplayed());
 		assertTrue(searchPage.getNumberOfResults() == 0);
 	}

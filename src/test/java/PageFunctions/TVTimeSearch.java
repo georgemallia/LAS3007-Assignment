@@ -1,6 +1,9 @@
 package PageFunctions;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,7 +30,7 @@ public class TVTimeSearch
 	@FindBy(xpath="//div[@id='search-results-container']/div")
 	public WebElement noresultsTab;
 	
-	@FindBy(xpath="//div[2]/a/img")
+	@FindBy(xpath="//h2/a")
 	private WebElement showBtn;
 	
 	@FindBy(xpath="//h2/a")
@@ -58,15 +61,50 @@ public class TVTimeSearch
 	}
 	
 	public void addShow(String searchInput)
+	{			
+		showBtn.click();
+		utils.waitForPageToSettleByCSS(".info-zone", driver);
+		addShowBtn.click();
+	}
+	
+	public String checkIfAdded(String searchInput)
 	{
-		if(displayTitleTxt.getText().toLowerCase().trim() == searchInput.toLowerCase().trim())
-		{
-			showBtn.click();
-			
-			utils.waitForPageToSettleByCSS(".info-zone", driver);
-			
-			addShowBtn.click();
-		}
+		WebElement showList = driver.findElement(By.xpath("//*[@id=\"shows-results\"]/ul")); 
+		List<WebElement> li_All = showList.findElements(By.tagName("li"));
+		
+		for(int i = 1; i <= li_All.size(); i++)
+	    {
+	    	try 
+	    	{
+	    		if(driver.findElement(By.xpath("/html/body/div[4]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[3]/h2/a")).getText().toLowerCase().trim() == searchInput)
+	    		{
+	    			WebElement addedBtn = driver.findElement(By.xpath("/html/body/div[4]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[1]/a"));
+	    			System.out.print(addedBtn.getClass());
+	    			
+	    			if(addedBtn.getClass().equals("follow-btn followed"))
+	    			{
+	    				return "Show Already Added";
+	    			}
+	    			
+	    		}
+
+			} 
+	    	catch (NoSuchElementException e) 
+	    	{
+	    		continue;
+			}
+	    }
+		
+		
+		return "Show Not Added";
+		
+		//button inidcating that it is followed
+//		"/html/body/div[4]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[1]/a"
+		
+		//show name
+//     "/html/body/div[4]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[3]/h2/a"
 		
 	}
+	
+	
 }

@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class PropertyFileReader
 {
-	String propFileName = "Properties/config.properties";
+	String propFileName = "properties/config.properties";
 	Properties property = new Properties();
 	String result = "";
 	
