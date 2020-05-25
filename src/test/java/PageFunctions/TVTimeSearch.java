@@ -8,8 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
@@ -31,13 +29,13 @@ public class TVTimeSearch
 	public WebElement noresultsTab;
 	
 	@FindBy(xpath="//h2/a")
-	private WebElement showBtn;
-	
-	@FindBy(xpath="//h2/a")
 	private WebElement displayTitleTxt;
 	
 	@FindBy(css=".follow-btn")
 	private WebElement addShowBtn;
+	
+	private WebElement showBtn;
+	
 	
 	public TVTimeSearch(WebDriver driver) 
 	{
@@ -61,8 +59,32 @@ public class TVTimeSearch
 	}
 	
 	public void addShow(String searchInput)
-	{			
-		showBtn.click();
+	{			 
+		WebElement showList = driver.findElement(By.xpath("//*[@id=\"shows-results\"]/ul")); 
+		List<WebElement> li_All = showList.findElements(By.tagName("li"));
+		System.out.println(li_All.size());
+		for(int i = 1; i <= li_All.size(); i++)
+	    {
+	    	try 
+	    	{
+	    		System.out.println("List Element: " + driver.findElement(By.xpath("/html/body/div[3]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[3]/h2/a")).getText().toLowerCase().trim());
+	    		System.out.println("Search TXT: " + searchInput.toLowerCase().trim());
+	    		
+	    		showBtn = driver.findElement(By.xpath("/html/body/div[3]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[3]/h2/a"));
+	    		String strCmp = showBtn.getText().toLowerCase().trim();
+	    			    		
+	    		if(strCmp.equalsIgnoreCase(searchInput))
+	    		{
+	    			showBtn.click();
+	    			break;
+	    		}
+	    	}	    	
+	    	catch (NoSuchElementException e) 
+	    	{
+	    		continue;
+			}
+	    }
+		
 		utils.waitForPageToSettleByCSS(".info-zone", driver);
 		addShowBtn.click();
 	}
@@ -72,38 +94,32 @@ public class TVTimeSearch
 		WebElement showList = driver.findElement(By.xpath("//*[@id=\"shows-results\"]/ul")); 
 		List<WebElement> li_All = showList.findElements(By.tagName("li"));
 		
+		System.out.println(li_All.size());
 		for(int i = 1; i <= li_All.size(); i++)
 	    {
 	    	try 
 	    	{
-	    		if(driver.findElement(By.xpath("/html/body/div[4]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[3]/h2/a")).getText().toLowerCase().trim() == searchInput)
+	    		System.out.println("List Element: " + driver.findElement(By.xpath("/html/body/div[3]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[3]/h2/a")).getText().toLowerCase().trim());
+	    		System.out.println("Search TXT: " + searchInput.toLowerCase().trim());
+	    		String strCmp = driver.findElement(By.xpath("/html/body/div[3]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[3]/h2/a")).getText().toLowerCase().trim();
+	    		if(strCmp.equalsIgnoreCase(searchInput))
 	    		{
-	    			WebElement addedBtn = driver.findElement(By.xpath("/html/body/div[4]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[1]/a"));
+	    			WebElement addedBtn = driver.findElement(By.xpath("/html/body/div[3]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[1]/a"));
 	    			System.out.print(addedBtn.getClass());
 	    			
-	    			if(addedBtn.getClass().equals("follow-btn followed"))
+	    			if(addedBtn.getAttribute("class").equals("follow-btn followed"))
 	    			{
-	    				return "Show Already Added";
+	    				return "Show Is Already Added";
 	    			}
-	    			
 	    		}
-
 			} 
 	    	catch (NoSuchElementException e) 
 	    	{
 	    		continue;
 			}
 	    }
-		
-		
+
 		return "Show Not Added";
-		
-		//button inidcating that it is followed
-//		"/html/body/div[4]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[1]/a"
-		
-		//show name
-//     "/html/body/div[4]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[3]/h2/a"
-		
 	}
 	
 	

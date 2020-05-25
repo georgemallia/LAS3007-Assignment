@@ -1,11 +1,16 @@
 package steps;
 
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hamcrest.CoreMatchers;
 import org.openqa.selenium.WebDriver;
 
 import PageFunctions.TVTimeHomePage;
@@ -25,14 +30,19 @@ import io.cucumber.java.en.When;
 public class WatchlistSteps 
 {
 	private WebDriver driver = null;
+	
 	TVTimeHomePage homePage;
 	TVTimeLogin loginPage;
 	TVTimeSearch searchPage;
 	TVTimeWatchlist watchlistPage;
+	
 	PropertyFileReader propFileReader;
 	CommonUtils utils;
 	
 	String searchInput = "";
+	String addedResult = "";
+	
+	List<String> showsList;
 	
 	@Before
 	public void openBrowser() 
@@ -55,8 +65,8 @@ public class WatchlistSteps
 	}
 	
 	
-	@Given("the user is logs in")
-	public void the_user_is_logged_in()
+	@Given("the user logs in")
+	public void the_user_logs_in()
 	{
 		loginPage = new TVTimeLogin(driver);		
 		loginPage.visitPage();
@@ -92,7 +102,7 @@ public class WatchlistSteps
 			e.printStackTrace();
 		}
 	}
-		
+		 
 	
 	
 	@When("he adds his show")
@@ -102,23 +112,82 @@ public class WatchlistSteps
 	}
 	
 	
+	@When("he tries to re-add his show")
+	public void he_tries_to_readd_his_show()
+	{
+		addedResult = searchPage.checkIfAdded(searchInput);
+	}
+	
+	@When("he clicks remove show")
+	public void he_clicks_remove_show()
+	{
+		searchPage.addShow(searchInput);
+	}
+	
+	@When("the user searchs and adds multiple shows")
+	public void the_user_searchs_and_adds_multiple_shows()
+	{
+		try
+		{
+			String shows = propFileReader.getPropertyValue("multipleShowSearch");
+			showsList = utils.returnMultipleShowNames(shows);
+			
+			for(String s : showsList)
+			{
+				searchPage = new TVTimeSearch(driver);
+				searchPage.searchItem(s);
+				
+				utils.waitForPageToSettleByXpath("//section[@id='shows-results']/h1", driver);
+				
+				searchPage.addShow(s);
+			}
+			
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	
 	@Then("the show sould be visible under his watchlist")
 	public void the_show_should_be_visible_under_his_watchlist()
 	{
 		List<String> showsFound = new ArrayList<String>();
 		watchlistPage = new TVTimeWatchlist(driver);
-		
-		showsFound = watchlistPage.visitWatchListPage(searchInput);
+		watchlistPage.visitWatchListPage();
+		showsFound = watchlistPage.getShowList();
 		
 		assertTrue(showsFound.contains(searchInput.toLowerCase().trim()));
 	}
 	
+	@Then("the show must already be marked added")
+	public void the_show_must_already_be_marked_added()
+	{
+		assertEquals("Show Is Already Added", addedResult);
+	}
 	
+	@Then("the show sould not be visible under his watchlist")
+	public void the_show_should_not_be_visible_under_his_watchlist()
+	{
+		watchlistPage = new TVTimeWatchlist(driver);
+		String description = watchlistPage.visitWatchListPage();
+		
+		assertEquals(description, "No shows found");
+	}
 	
-	
-	
-	
+	@Then("the shows sould be visible under his watchlist")
+	public void the_shows_should_be_visible_under_his_watchlist()
+	{
+		List<String> showsFound = new ArrayList<String>();
+		watchlistPage = new TVTimeWatchlist(driver);
+		watchlistPage.visitWatchListPage();
+		showsFound = watchlistPage.getShowList();
+		
+		assertTrue(showsFound.containsAll(showsList));
+	}
 	
 	
 

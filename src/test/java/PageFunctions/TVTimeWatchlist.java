@@ -35,13 +35,32 @@ public class TVTimeWatchlist
 		propFileReader = new PropertyFileReader();
 		utils = new CommonUtils();
 	}
-
-	public List<String> visitWatchListPage(String showToFind)
+ 
+	public String visitWatchListPage()
+	{
+		watchlistBtn.click();
+		try
+		{
+			utils.waitForPageToSettleByCSS("#to-watch", driver);
+		} 
+		catch (Exception e) 
+		{
+			utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[3]/div/div[2]/div/div", driver);
+			
+			WebElement noShowsBanner = driver.findElement(By.xpath("//*[@id=\"container\"]/div[3]/div[3]/div/div[2]/div/div/div/h2"));
+			if(noShowsBanner.getText().equalsIgnoreCase("What shows are you watching?"))
+			{
+				return "No shows found";
+			}
+		}
+		return "";
+	}
+	
+	
+	public List<String> getShowList()
 	{
 		List<String> myShows = new ArrayList<String>();
-		watchlistBtn.click();
 		
-		utils.waitForPageToSettleByCSS("#to-watch", driver);
 		
 		WebElement showList = driver.findElement(By.xpath("//*[@id=\"to-watch\"]/ul")); 
 		List<WebElement> li_All = showList.findElements(By.tagName("li"));
@@ -62,21 +81,8 @@ public class TVTimeWatchlist
 			}
 	    }
 	    
-	    return myShows;
-	    /*
-		for (WebElement show: showList) 
-		{
-		      System.out.println(show.getText());
-		      if(show.getText().toLowerCase().trim() == showToFind.toLowerCase().trim())
-		      {
-		    	  
-		    	  found = true;
-		    	  return found;
-		      }
-		}*/
+	    return myShows;	
 		
-	}
-	
-	
-	
+		
+	}	
 }
