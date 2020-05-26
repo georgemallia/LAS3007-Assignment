@@ -1,16 +1,14 @@
 package steps;
 
 
-import static org.junit.Assert.assertThat;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hamcrest.CoreMatchers;
 import org.openqa.selenium.WebDriver;
 
 import PageFunctions.TVTimeHomePage;
@@ -44,9 +42,10 @@ public class WatchlistSteps
 	
 	List<String> showsList;
 	
-	@Before
+	//@Before
 	public void openBrowser() 
 	{
+		System.out.print("Creating Driver");
 		System.setProperty("browser", "firefox");	
 		propFileReader = new PropertyFileReader();
 		utils = new CommonUtils();
@@ -95,7 +94,6 @@ public class WatchlistSteps
 			searchPage.searchItem(searchInput);
 			
 			utils.waitForPageToSettleByXpath("//section[@id='shows-results']/h1", driver);
-			//assertTrue(searchPage.getNumberOfResults() >= 0);
 		} 
 		catch (IOException e)
 		{

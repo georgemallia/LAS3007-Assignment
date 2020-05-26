@@ -18,7 +18,6 @@ Feature: AddShow
     When he clicks remove show
     Then the show sould not be visible under his watchlist
 
-  @TO_RUN
   Scenario: Adding Multiple Shows
     Given the user logs in
     When the user searchs and adds multiple shows

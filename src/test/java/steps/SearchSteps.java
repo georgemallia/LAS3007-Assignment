@@ -1,6 +1,6 @@
 package steps;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ public class SearchSteps
 	PropertyFileReader propFileReader;
 	CommonUtils utils;
 		
-	@Before
+	//@Before
 	public void openBrowser() 
 	{
 		System.setProperty("browser", "firefox");	

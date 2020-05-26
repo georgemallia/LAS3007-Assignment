@@ -7,8 +7,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
@@ -17,6 +17,7 @@ import org.openqa.selenium.WebDriver;
 
 import PageFunctions.TVTimeHomePage;
 import PageFunctions.TVTimeLogin;
+import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
 import Utilities.WebDriverFactory;
 
@@ -26,14 +27,15 @@ public class LoginSteps
 	TVTimeHomePage homePage;
 	TVTimeLogin loginPage;
 	PropertyFileReader propFileReader;
+	CommonUtils utils;
 	
-	
-	@Before
+	//@Before
 	public void openBrowser() 
 	{
 		System.setProperty("browser", "firefox");	
 		propFileReader = new PropertyFileReader();
 		driver = WebDriverFactory.createWebDriver();
+		utils = new CommonUtils();
 	}
 
 	
@@ -143,7 +145,7 @@ public class LoginSteps
 	@Then("I should be logged in")
 	public void i_shoulld_be_logged_in() 
 	{
-		homePage.waitForPageToSettle("//*[@id=\"container\"]/div[3]/div[2]/div");
+		utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
 		assertTrue(homePage.isLoggedIn());
 	}
 	
@@ -158,7 +160,7 @@ public class LoginSteps
 	public void I_should_be_logged_out()
 	{
 		//waiting for signout page nav to load
-		homePage.waitForPageToSettle("//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[1]");
+		utils.waitForPageToSettleByXpath("//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[1]", driver);
 		assertFalse(homePage.isLoggedIn());
 	}
 }

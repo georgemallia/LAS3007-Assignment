@@ -1,6 +1,8 @@
 package steps;
 
-import static org.junit.Assert.assertEquals;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import PageFunctions.TVTimeAccountPage;
 import PageFunctions.TVTimeHomePage;
 import PageFunctions.TVTimeLogin;
+import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
 import Utilities.WebDriverFactory;
 
@@ -28,13 +31,15 @@ public class AccountSteps
 	TVTimeLogin loginPage;
 	TVTimeAccountPage accountPage;
 	PropertyFileReader propFileReader;
+	CommonUtils utils;
 	
-	@Before
+	//@Before
 	public void openBrowser() 
 	{
 		System.setProperty("browser", "firefox");	
 		propFileReader = new PropertyFileReader();
 		driver = WebDriverFactory.createWebDriver();
+		utils = new CommonUtils();
 	}
 	
 	@After
@@ -63,7 +68,7 @@ public class AccountSteps
 		}
 		
 		homePage = loginPage.loginBtnClick();
-		homePage.waitForPageToSettle("//*[@id=\"container\"]/div[3]/div[2]/div");
+		utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
 	}
 	
 	

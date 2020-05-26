@@ -28,6 +28,7 @@ public class TVTimeWatchlist
 	@FindBy(xpath="//*[@id=\"to-watch\"]/ul")
 	private WebElement toWatchList;
 	
+	
 	public TVTimeWatchlist(WebDriver driver) 
 	{
 		this.driver = driver;
@@ -61,7 +62,6 @@ public class TVTimeWatchlist
 	{
 		List<String> myShows = new ArrayList<String>();
 		
-		
 		WebElement showList = driver.findElement(By.xpath("//*[@id=\"to-watch\"]/ul")); 
 		List<WebElement> li_All = showList.findElements(By.tagName("li"));
 	    System.out.println(li_All.size());
@@ -80,9 +80,38 @@ public class TVTimeWatchlist
 	    		continue;
 			}
 	    }
-	    
+	   
 	    return myShows;	
-		
-		
 	}	
+	
+	//to confirm that the show is under watch next tab
+	public String checkShowsUnderWatchNext(String showName)
+	{
+		WebElement showList = driver.findElement(By.xpath("/html/body/div[3]/div[3]/div/div[2]/div/div/section[1]/ul")); 
+		List<WebElement> li_All = showList.findElements(By.tagName("li"));
+		
+		for(int i = 1; i <= li_All.size(); i++)
+	    {
+	    	try 
+	    	{
+				WebElement show = driver.findElement(By.xpath("/html/body/div[3]/div[3]/div/div[2]/div/div/section[1]/ul/li[" + i + "]/div[3]/a"));
+				System.out.println(show.getText().toLowerCase().trim());
+				
+				String showCmp = show.getText().toLowerCase().trim();
+				if(showCmp.equalsIgnoreCase(showName.trim()))
+				{
+					return "Show is under Watch Next";
+				}
+				
+			} 
+	    	catch (NoSuchElementException e) 
+	    	{
+	    		continue;
+			}
+	    }
+		
+		//default
+		return "";
+	}
+	
 }

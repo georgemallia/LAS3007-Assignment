@@ -1,12 +1,10 @@
 package PageFunctions;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TVTimeHomePage
 {
@@ -20,8 +18,8 @@ public class TVTimeHomePage
 	
 	public TVTimeHomePage(WebDriver driver)
 	{
-		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		this.driver = driver;
 	}
 				
 	public boolean isLoggedIn()
@@ -45,13 +43,5 @@ public class TVTimeHomePage
 	public void logoutProcess()
 	{
 		signOutBtn.click();
-	}
-
-	public void waitForPageToSettle(String ByLocator) 
-	{   
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ByLocator)));
-	}
-	
-	
+	}	
 }
