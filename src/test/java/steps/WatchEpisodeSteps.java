@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import PageFunctions.TVTimeHomePage;
 import PageFunctions.TVTimeLogin;
@@ -28,7 +29,6 @@ import io.cucumber.java.en.When;
 
 public class WatchEpisodeSteps
 {
-
 	private WebDriver driver = null;
 	
 	TVTimeHomePage homePage;
@@ -43,6 +43,7 @@ public class WatchEpisodeSteps
 	String searchInput = "";
 	String result = "";
 	String watchNextResult = "";
+	String previousSeasonResult = "";
 	
 	@Before
 	public void openBrowser() 
@@ -54,7 +55,6 @@ public class WatchEpisodeSteps
 		driver = WebDriverFactory.createWebDriver();
 		PageFactory.initElements(driver, this);
 	}
-
 
 	@After
     public void closeBrowser() 
@@ -86,6 +86,7 @@ public class WatchEpisodeSteps
 	}
 	
 	
+	
 	@And("the user adds a show to his watchlist")
 	public void the_user_adds_a_show_to_his_watchlist()
 	{
@@ -108,11 +109,19 @@ public class WatchEpisodeSteps
 	@And("he opens the next episode to watch")
 	public void he_opens_the_next_episode_to_watch()
 	{
-		watchlistPage = new TVTimeWatchlist(driver);
-		watchlistPage.visitWatchListPage();
-		
-		showPage = new TVTimeShow(driver);
-		showPage.openShow(searchInput);
+		try 
+		{
+			searchInput = propFileReader.getPropertyValue("searchInput");
+			watchlistPage = new TVTimeWatchlist(driver);
+			watchlistPage.visitWatchListPage();
+			
+			showPage = new TVTimeShow(driver);
+			showPage.openShow(searchInput);
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	@And("the show will be listed under watch next tab")
@@ -123,12 +132,75 @@ public class WatchEpisodeSteps
 		assertEquals("Show is under Watch Next", watchNextResult);
 	}
 	
+	
+	@And("the user opens his watchlist")
+	public void the_user_opens_his_watchlist()
+	{
+		watchlistPage = new TVTimeWatchlist(driver);
+		watchlistPage.visitWatchListPage();
+	}
+		
+	
+	@And("he marks the episode as unwatched")
+	public void he_marks_the_episode_as_unwatched()
+	{
+		utils.waitForPageToSettleByXpath("//div[@id='top-banner']/div/div[5]", driver);
+		result = showPage.clickUnwatched();
+	}
+	
+	@And("he opens a show")
+	public void he_opens_a_show()
+	{
+		try
+		{
+			searchInput = propFileReader.getPropertyValue("searchInput");
+			showPage = new TVTimeShow(driver);
+			showPage.openShowDescription(searchInput);
+			
+			utils.waitForPageToSettleByCSS(".info-zone", driver);
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	@And("he clicks the season unwatch button")
+	public void he_clicks_the_season_unwatch_button()
+	{
+		showPage.unWatchSeason();
+	}
+	
+	
+	
 	@When("he marks the episode as watched")
 	public void he_marks_the_episode_as_watched()
 	{
 		utils.waitForPageToSettleByXpath("//div[@id='top-banner']/div/div[5]", driver);
 		result = showPage.clickWatched();
 	}
+
+	@When("he selects previous episode")
+	public void he_selects_previous_episode()
+	{
+		utils.waitForPageToSettleByXpath("//div[@id='top-banner']/div/div[5]", driver);
+		showPage.getPreviousEpisode();
+	}
+	
+	@When("he clicks the seen button near the season name")
+	public void he_click_the_seen_button_near_the_season_name() 
+	{
+		showPage.clickWatchSeasons();
+	}
+	
+	@When("he selects the previous season")
+	public void he_selects_the_previous_season()
+	{
+		previousSeasonResult = showPage.selectPreviousSeason();
+		System.out.println("Previous Season Result: " + previousSeasonResult);
+	}
+	
+	
 	
 	@Then("the watched button text is changed to watched")
 	public void the_watched_button_text_is_changed_to_watched()
@@ -139,7 +211,29 @@ public class WatchEpisodeSteps
 		System.out.println("watchedBtn.getText: " + watchedBtn.getText());
 		assertEquals("WATCHED!", watchedBtn.getText());
 	}
+	 
+	@Then("the watched button text is changed to unwatched")
+	public void the_watched_button_text_is_changed_to_unwatched()
+	{
+		WebElement watchedBtn = driver.findElement(By.cssSelector(".not-watched-label"));
+		
+		assertEquals("Show episode marked as unwatched", result);
+		System.out.println("watchedBtn.getText: " + watchedBtn.getText());
+		assertEquals("WATCHED?", watchedBtn.getText());	
+	}
 	
+	@Then("the whole season should be marked as watched")
+	public void the_whole_season_should_be_marked_as_watched()
+	{
+		String result = showPage.checkSeasonWatched();
+		assertEquals("Season has been marked as watched", result);
+	}
 	
+	@Then("the whole season should be marked as unwatched")
+	public void the_whole_season_should_be_marked_as_unwatched()
+	{
+		String result = showPage.checkSeasonUnWatched();
+		assertEquals("Season is not watched", result);
+	}
 	
 }
