@@ -1,8 +1,7 @@
 package steps;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
@@ -15,11 +14,10 @@ import PageFunctions.TVTimeHomePage;
 import PageFunctions.TVTimeLogin;
 import PageFunctions.TVTimeSearch;
 import PageFunctions.TVTimeWatchlist;
+
 import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
-import Utilities.WebDriverFactory;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -27,7 +25,7 @@ import io.cucumber.java.en.When;
 
 public class WatchlistSteps 
 {
-	private WebDriver driver = null;
+	private WebDriver driver;
 	
 	TVTimeHomePage homePage;
 	TVTimeLogin loginPage;
@@ -42,28 +40,14 @@ public class WatchlistSteps
 	
 	List<String> showsList;
 	
-	//@Before
-	public void openBrowser() 
+	public WatchlistSteps(TestContext tc)
 	{
-		System.out.print("Creating Driver");
-		System.setProperty("browser", "firefox");	
+		System.out.println("watchlist steps class: getting tc.driver");
+		this.driver = tc.getDriver();
 		propFileReader = new PropertyFileReader();
 		utils = new CommonUtils();
-		driver = WebDriverFactory.createWebDriver();
 	}
 
-
-	@After
-    public void closeBrowser() 
-	{
-		if (driver != null)
-		{
-			driver.close();
-		}
-		searchInput = "";
-	}
-	
-	
 	@Given("the user logs in")
 	public void the_user_logs_in()
 	{
@@ -158,6 +142,12 @@ public class WatchlistSteps
 		watchlistPage.visitWatchListPage();
 		showsFound = watchlistPage.getShowList();
 		
+		System.out.println("the show sould be visible under his watchlist");
+		for(String s : showsFound)
+		{
+			System.out.println(s);
+		}
+		
 		assertTrue(showsFound.contains(searchInput.toLowerCase().trim()));
 	}
 	
@@ -173,7 +163,18 @@ public class WatchlistSteps
 		watchlistPage = new TVTimeWatchlist(driver);
 		String description = watchlistPage.visitWatchListPage();
 		
-		assertEquals(description, "No shows found");
+		List<String> showslist = watchlistPage.getShowList();
+		
+		
+		//TODO: REMOVE AFTER TESTING PURPOSES
+		System.out.println("the show sould not be visible under his watchlist");
+		for(String s : showslist)
+		{
+			System.out.println(s);
+		}
+		
+		assertFalse(showslist.contains(searchInput));
+		//assertEquals(description, "No shows found");
 	}
 	
 	@Then("the shows sould be visible under his watchlist")
@@ -183,6 +184,12 @@ public class WatchlistSteps
 		watchlistPage = new TVTimeWatchlist(driver);
 		watchlistPage.visitWatchListPage();
 		showsFound = watchlistPage.getShowList();
+		
+		System.out.println("the shows sould be visible under his watchlist");
+		for(String s : showsFound)
+		{
+			System.out.println(s);
+		}
 		
 		assertTrue(showsFound.containsAll(showsList));
 	}

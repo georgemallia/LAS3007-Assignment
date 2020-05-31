@@ -7,8 +7,6 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import PageFunctions.TVTimeHomePage;
 import PageFunctions.TVTimeLogin;
@@ -18,10 +16,7 @@ import PageFunctions.TVTimeWatchlist;
 
 import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
-import Utilities.WebDriverFactory;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -29,7 +24,7 @@ import io.cucumber.java.en.When;
 
 public class WatchEpisodeSteps
 {
-	private WebDriver driver = null;
+	private WebDriver driver;
 	
 	TVTimeHomePage homePage;
 	TVTimeLogin loginPage;
@@ -45,31 +40,18 @@ public class WatchEpisodeSteps
 	String watchNextResult = "";
 	String previousSeasonResult = "";
 	
-	@Before
-	public void openBrowser() 
+	public WatchEpisodeSteps(TestContext tc)
 	{
-		System.out.print("Creating Driver");
-		System.setProperty("browser", "firefox");	
+		System.out.println("watch episode steps class: getting tc.driver");
+		this.driver = tc.getDriver();
 		propFileReader = new PropertyFileReader();
 		utils = new CommonUtils();
-		driver = WebDriverFactory.createWebDriver();
-		PageFactory.initElements(driver, this);
 	}
-
-	@After
-    public void closeBrowser() 
-	{
-		if (driver != null)
-		{
-			driver.close();
-		}
-	}
-	
-	
+		
 	@Given("that the user is logs in")
 	public void that_the_user_is_logs_in()
 	{
-		loginPage = new TVTimeLogin(driver);		
+		loginPage = new TVTimeLogin(driver);	 	
 		loginPage.visitPage();
 		
 		try
@@ -92,7 +74,7 @@ public class WatchEpisodeSteps
 	{
 		try 
 		{
-			searchInput = propFileReader.getPropertyValue("searchInput");
+			searchInput = propFileReader.getPropertyValue("showInput");
 			searchPage = new TVTimeSearch(driver);
 			searchPage.searchItem(searchInput);
 			

@@ -1,7 +1,5 @@
 package steps;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,47 +7,33 @@ import io.cucumber.java.en.When;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.RepeatedTest;
 
 import java.io.IOException;
 
-import org.junit.jupiter.api.RepeatedTest;
 import org.openqa.selenium.WebDriver;
 
 import PageFunctions.TVTimeHomePage;
 import PageFunctions.TVTimeLogin;
 import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
-import Utilities.WebDriverFactory;
 
 public class LoginSteps
 {
-	private WebDriver driver = null;
+	private WebDriver driver;
 	TVTimeHomePage homePage;
 	TVTimeLogin loginPage;
 	PropertyFileReader propFileReader;
 	CommonUtils utils;
 	
-	//@Before
-	public void openBrowser() 
+	public LoginSteps(TestContext tc)
 	{
-		System.setProperty("browser", "firefox");	
+		System.out.println("Login steps class: getting tc.driver");
+		driver = tc.getDriver();
 		propFileReader = new PropertyFileReader();
-		driver = WebDriverFactory.createWebDriver();
 		utils = new CommonUtils();
 	}
-
-	
-	@After
-    public void closeBrowser() 
-	{
-		if (driver != null)
-		{
-			driver.close();
-		}
-	}
-	
-	
-	
+		
 	@Given("I try to sign in")
 	public void I_try_to_sign_in()
 	{
@@ -128,6 +112,7 @@ public class LoginSteps
 		homePage = loginPage.signinBtnClick();
 	}
 	
+	@RepeatedTest(3)
 	@And("click the log in button")
 	public void click_the_log_in_button()
 	{

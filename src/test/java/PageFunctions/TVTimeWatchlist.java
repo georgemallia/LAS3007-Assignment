@@ -48,11 +48,11 @@ public class TVTimeWatchlist
 		{
 			utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[3]/div/div[2]/div/div", driver);
 			
-			WebElement noShowsBanner = driver.findElement(By.xpath("//*[@id=\"container\"]/div[3]/div[3]/div/div[2]/div/div/div/h2"));
-			if(noShowsBanner.getText().equalsIgnoreCase("What shows are you watching?"))
-			{
-				return "No shows found";
-			}
+			//WebElement noShowsBanner = driver.findElement(By.xpath("//*[@id=\"container\"]/div[3]/div[3]/div/div[2]/div/div/div/h2"));
+		//	if(noShowsBanner.getText().equalsIgnoreCase("What shows are you watching?"))
+			//{
+			//	return "No shows found";
+			//}
 		}
 		return "";
 	}
@@ -62,24 +62,29 @@ public class TVTimeWatchlist
 	{
 		List<String> myShows = new ArrayList<String>();
 		
-		WebElement showList = driver.findElement(By.xpath("//*[@id=\"to-watch\"]/ul")); 
-		List<WebElement> li_All = showList.findElements(By.tagName("li"));
-	    System.out.println(li_All.size());
-	    
-	    for(int i = 1; i <= li_All.size(); i++)
-	    {
-	    	try 
-	    	{
-				WebElement show = driver.findElement(By.xpath("/html/body/div[3]/div[3]/div/div[2]/div/div/section/ul/li[" + i + "]/div[3]/a"));
-				System.out.println(show.getText().toLowerCase().trim());
+		//WebElement showList = driver.findElement(By.xpath("//*[@id=\"to-watch\"]/ul")); 
+		List<WebElement> ui_All = driver.findElements(By.xpath("//*[@id=\"to-watch\"]/ul")); 
+		
+		for(int j = 0; j < ui_All.size(); j++)
+		{
+			List<WebElement> li_All = ui_All.get(j).findElements(By.tagName("li"));
+		    System.out.println(li_All.size());
+		    
+		    for(int i = 1; i <= li_All.size(); i++)
+		    {
+		    	try 
+		    	{
+					WebElement show = driver.findElement(By.xpath("/html/body/div[3]/div[3]/div/div[2]/div/div/section[" + j+1 + "]/ul/li[" + i + "]/div[3]/a"));
+					System.out.println(show.getText().toLowerCase().trim());
 
-				myShows.add(show.getText().toLowerCase().trim());
-			} 
-	    	catch (NoSuchElementException e) 
-	    	{
-	    		continue;
-			}
-	    }
+					myShows.add(show.getText().toLowerCase().trim());
+				} 
+		    	catch (NoSuchElementException e) 
+		    	{
+		    		continue;
+				}
+		    }
+		}
 	   
 	    return myShows;	
 	}	

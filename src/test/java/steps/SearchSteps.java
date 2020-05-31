@@ -9,42 +9,31 @@ import org.openqa.selenium.WebDriver;
 import PageFunctions.TVTimeHomePage;
 import PageFunctions.TVTimeLogin;
 import PageFunctions.TVTimeSearch;
+
 import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
-import Utilities.WebDriverFactory;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class SearchSteps 
 {
-	private WebDriver driver = null;
+	private WebDriver driver;
 	TVTimeHomePage homePage;
 	TVTimeLogin loginPage;
 	TVTimeSearch searchPage;
 	PropertyFileReader propFileReader;
 	CommonUtils utils;
 		
-	//@Before
-	public void openBrowser() 
+	public SearchSteps(TestContext tc)
 	{
-		System.setProperty("browser", "firefox");	
+		System.out.println("Search steps class: getting tc.driver");
+		this.driver = tc.getDriver();
 		propFileReader = new PropertyFileReader();
 		utils = new CommonUtils();
-		driver = WebDriverFactory.createWebDriver();
 	}
 
-	@After
-    public void closeBrowser() 
-	{
-		if (driver != null)
-		{
-			driver.close();
-		}
-	}
-	
 	@Given("that the user is logged in")
 	public void that_the_user_is_logged_in()
 	{
@@ -61,7 +50,7 @@ public class SearchSteps
 		}
 		
 		homePage = loginPage.loginBtnClick();
-		utils.waitForPageToSettleByXpath("//*[@id=\\\"container\\\"]/div[3]/div[2]/div", driver);
+		utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
 	}
 	
 	

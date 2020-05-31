@@ -45,7 +45,8 @@ public class TVTimeLogin
 		propFileReader = new PropertyFileReader();
 	}
 
-	public void visitPage() {
+	public void visitPage()
+	{
 		driver.get(URL);
 	}
 

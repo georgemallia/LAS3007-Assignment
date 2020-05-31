@@ -1,7 +1,5 @@
 package steps;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -15,10 +13,7 @@ import PageFunctions.TVTimeHomePage;
 import PageFunctions.TVTimeLogin;
 import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
-import Utilities.WebDriverFactory;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -26,29 +21,19 @@ import io.cucumber.java.en.When;
 
 public class AccountSteps 
 {
-	private WebDriver driver = null;
+	private WebDriver driver;
 	TVTimeHomePage homePage;
 	TVTimeLogin loginPage;
 	TVTimeAccountPage accountPage;
 	PropertyFileReader propFileReader;
 	CommonUtils utils;
 	
-	//@Before
-	public void openBrowser() 
+	public AccountSteps(TestContext tc)
 	{
-		System.setProperty("browser", "firefox");	
+		System.out.println("Account steps class: getting tc.driver");
+		this.driver = tc.getDriver();
 		propFileReader = new PropertyFileReader();
-		driver = WebDriverFactory.createWebDriver();
 		utils = new CommonUtils();
-	}
-	
-	@After
-	public void closeBrowser()
-	{
-		if (driver != null)
-		{
-			driver.close();
-		}	
 	}
 	
 	

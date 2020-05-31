@@ -9,7 +9,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 public class WebDriverFactory 
 {
 	private static String PATH = "src/test/resources/drivers/";
-	static WebDriver driver = null;
+	static WebDriver driver;
 	
 	public static WebDriver createWebDriver() 
 	{
