@@ -8,10 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
+import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
 
 
@@ -19,6 +18,7 @@ public class TVTimeAccountPage
 {
 	protected WebDriver driver;
 	PropertyFileReader propFileReader;
+	CommonUtils utils;
 	
 	private Select monthDropDown;
 	private Select dayDropDown;
@@ -38,6 +38,7 @@ public class TVTimeAccountPage
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		propFileReader = new PropertyFileReader();
+		utils = new CommonUtils();
 	}
 	
 	
@@ -73,7 +74,7 @@ public class TVTimeAccountPage
 	
 	public List<WebElement> verifyDetails()
 	{
-		waitForPageToSettle("//*[@id=\"settings\"]");
+		utils.waitForPageToSettleByXpath("//*[@id=\"settings\"]", driver);
 		
 		//re-initialising the Select to avoid stale exception
 		monthDropDown = new Select(driver.findElement(By.name("birth[month]")));
@@ -92,11 +93,4 @@ public class TVTimeAccountPage
 		
 		return details;
 	}
-	
-	public void waitForPageToSettle(String ByLocator) 
-	{   
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ByLocator)));
-	}
-
 }

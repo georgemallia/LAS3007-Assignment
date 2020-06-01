@@ -29,8 +29,8 @@ public class TVTimeShow
 
 	@FindBy(linkText="Mark season as watched")
 	private WebElement watchSeasonBtn;
-
-	@FindBy(xpath="//div[2]/div/div[2]/div/div/a/i[2]")
+	//xpath="//div[2]/div/div[2]/div/div/a/i[2]"
+	@FindBy(css=".watched")
 	private WebElement unWatchSeasonBtn;
 	
 		
@@ -202,7 +202,11 @@ public class TVTimeShow
 		List<WebElement> li_All = seasonList.findElements(By.tagName("li"));
 	    System.out.println(li_All.size());
 		
-	    
+	    /*
+	    if(li_All.size() == 1)
+	    {
+	    	return "Show only contains 1 season";
+	    }*/
 	    
 	    for(WebElement li : li_All)
 	    {

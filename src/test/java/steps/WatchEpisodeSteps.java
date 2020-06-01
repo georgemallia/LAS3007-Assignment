@@ -93,7 +93,7 @@ public class WatchEpisodeSteps
 	{
 		try 
 		{
-			searchInput = propFileReader.getPropertyValue("searchInput");
+			searchInput = propFileReader.getPropertyValue("showInput");
 			watchlistPage = new TVTimeWatchlist(driver);
 			watchlistPage.visitWatchListPage();
 			
@@ -135,7 +135,7 @@ public class WatchEpisodeSteps
 	{
 		try
 		{
-			searchInput = propFileReader.getPropertyValue("searchInput");
+			searchInput = propFileReader.getPropertyValue("showInput");
 			showPage = new TVTimeShow(driver);
 			showPage.openShowDescription(searchInput);
 			

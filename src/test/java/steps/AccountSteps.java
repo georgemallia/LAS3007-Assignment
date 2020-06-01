@@ -62,7 +62,7 @@ public class AccountSteps
 	{
 		accountPage = new TVTimeAccountPage(driver);
 		accountPage.vistAccountPage();
-		accountPage.waitForPageToSettle("//*[@id=\"settings\"]");
+		utils.waitForPageToSettleByXpath("//*[@id=\"settings\"]", driver);
 	}
 	
 	@And("clicks save")
