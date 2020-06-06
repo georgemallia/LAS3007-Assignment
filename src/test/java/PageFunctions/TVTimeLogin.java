@@ -30,10 +30,12 @@ public class TVTimeLogin
 	@FindBy(name="password")
 	private WebElement passwordFld;
 
-	@FindBy(xpath="//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[3]/div[2]/div/div/div/form/div[3]/input")
+	//@FindBy(xpath="//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[3]/div[2]/div/div/div/form/div[3]/input")
+	@FindBy(css=".views__SubmitButton-x7wsxy-7")
 	private WebElement finalSigninBtn;
 	
-	@FindBy(xpath="//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[3]/div[1]/div/div/div/form/div[3]/input")
+	//@FindBy(xpath="//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[3]/div[1]/div/div/div/form/div[3]/input")
+	@FindBy(css=".views__SubmitButton-hnsgg9-7")
 	private WebElement finalLoginBtn;
 	
 
