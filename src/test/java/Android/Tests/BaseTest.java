@@ -9,7 +9,6 @@ import static io.appium.java_client.remote.MobileCapabilityType.PLATFORM_VERSION
 import static io.appium.java_client.remote.MobileCapabilityType.UDID;
 import static org.openqa.selenium.remote.CapabilityType.PLATFORM_NAME;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.junit.jupiter.api.AfterEach;

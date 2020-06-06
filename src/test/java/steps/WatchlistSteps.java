@@ -161,6 +161,7 @@ public class WatchlistSteps
 	public void the_show_should_not_be_visible_under_his_watchlist()
 	{
 		watchlistPage = new TVTimeWatchlist(driver);
+		@SuppressWarnings("unused")
 		String description = watchlistPage.visitWatchListPage();
 		
 		List<String> showslist = watchlistPage.getShowList();
@@ -174,7 +175,6 @@ public class WatchlistSteps
 		}
 		
 		assertFalse(showslist.contains(searchInput));
-		//assertEquals(description, "No shows found");
 	}
 	
 	@Then("the shows sould be visible under his watchlist")

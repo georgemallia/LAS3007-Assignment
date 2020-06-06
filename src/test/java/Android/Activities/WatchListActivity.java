@@ -2,16 +2,13 @@ package Android.Activities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.By.ById;
-import org.openqa.selenium.interactions.touch.TouchActions;
 
 import Utilities.CommonUtils;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 
 public class WatchListActivity
@@ -62,9 +59,6 @@ public class WatchListActivity
 	{
 		List<MobileElement> rtnShows = new ArrayList<MobileElement>();
 		List<MobileElement> episodeNames = new ArrayList<MobileElement>();
-		List<String> showNames = new ArrayList<String>();
-
-		MobileElement showTab;
 		
 		//elemet that contains all shows 
 		MobileElement showsList = (MobileElement) mobileDriver.findElementById("com.tozelabs.tvshowtime:id/episodesList");

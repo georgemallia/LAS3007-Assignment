@@ -33,7 +33,7 @@ public class WatchlistTest extends BaseTest
 	List<String> showsList;
 	List<String> addResults;
 	
-	//@Test
+	@Test
 	public void addShow()
 	{
 		try 
@@ -64,7 +64,7 @@ public class WatchlistTest extends BaseTest
 		}
 	}	
 	
-	//@Test
+	@Test
 	public void addMultipleShows()
 	{
 		addResults = new ArrayList<String>();

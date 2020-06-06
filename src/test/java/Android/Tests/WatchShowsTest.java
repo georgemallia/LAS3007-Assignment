@@ -1,6 +1,5 @@
 package Android.Tests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
@@ -24,7 +23,7 @@ public class WatchShowsTest extends BaseTest
 	ShowActivity show_activity;
 	WatchListActivity watchlist_activity;
 	
-	//@RepeatedTest(2)
+	@RepeatedTest(2)
 	public void addShow()
 	{
 		boolean watched;

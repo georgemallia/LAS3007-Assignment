@@ -14,4 +14,4 @@ import io.cucumber.junit.Cucumber;
 		//tags = {"@TO_RUN"}
 	)
 
-public class RunDBBTests {}
+public class RunDBBTest {}
