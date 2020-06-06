@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import Android.Activities.LoginActivity;
@@ -22,9 +23,12 @@ public class WatchShowsTest extends BaseTest
 	ShowActivity show_activity;
 	WatchListActivity watchlist_activity;
 	
+	@RepeatedTest(3)
 	@Test
 	public void addShow()
 	{
+		boolean watched;
+		
 		try 
 		{
 			new LoginActivity(driver).signinProcess(propertyReader.getPropertyValue("username"), propertyReader.getPropertyValue("password"));
@@ -32,6 +36,14 @@ public class WatchShowsTest extends BaseTest
 			watchlist_activity = new WatchListActivity(driver);
 			watchlist_activity.navigateToShows();
 			
+			//TODO: Implement show to watch functionality
+			watchlist_activity.openShowEpisode(propertyReader.getPropertyValue("showEpisodeToWatch"));
+			
+			show_activity = new ShowActivity(driver);
+			show_activity.watchEpisode();
+			watched = show_activity.episodeRatingsVisible();
+			
+			assertTrue(watched);
 		}
 		catch (IOException e) 
 		{

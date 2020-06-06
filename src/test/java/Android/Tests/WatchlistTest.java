@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -24,10 +25,13 @@ public class WatchlistTest extends BaseTest
 	ShowActivity show_activity;
 	WatchListActivity watchlist_activity;
 	
+	boolean allAdded;
+	
 	String showName = "";
 	String addResult = "";
 	
 	List<String> showsList;
+	List<String> addResults;
 	
 	@Test
 	public void addShow()
@@ -63,24 +67,25 @@ public class WatchlistTest extends BaseTest
 	@Test
 	public void addMultipleShows()
 	{
+		addResults = new ArrayList<String>();
+		
 		try 
 		{
 			new LoginActivity(driver).signinProcess(propertyReader.getPropertyValue("username"), propertyReader.getPropertyValue("password"));
 			
 			showName = propertyReader.getPropertyValue("multipleAndriodShowSearch");
-			search_activity = new SearchActivity(driver);
-			show_activity = new ShowActivity(driver);
-			
 			List<String> shows = utils.returnMultipleShowNames(showName);
 			
 			//Searching multiple shows and adds them to the watchlist
 			for(String s : shows)
 			{
+				show_activity = new ShowActivity(driver);
+				search_activity = new SearchActivity(driver);
+				
 				search_activity.searchShow(s);
 				search_activity.openShow();
 				
-				show_activity = new ShowActivity(driver);
-				addResult = show_activity.addShow();
+				addResults.add(show_activity.addShow());
 				show_activity.closeShow();
 			}
 			
@@ -90,8 +95,14 @@ public class WatchlistTest extends BaseTest
 			
 			//assert added button had the text ADDED!
 			//assert showlist contains show
-			assertEquals("ADDED!", addResult);
-			assertTrue(showsList.contains(showName.toLowerCase().trim()));
+			
+			if(addResults.stream().allMatch(s -> s.equals("ADDED!")))
+			{
+				allAdded = true;
+			}
+			
+			assertTrue(allAdded);
+			assertTrue(showsList.stream().anyMatch(shows::contains));
 		}
 		catch (IOException e) 
 		{
