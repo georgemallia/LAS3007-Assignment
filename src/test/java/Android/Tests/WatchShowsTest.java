@@ -14,6 +14,7 @@ import Android.Activities.ShowActivity;
 import Android.Activities.WatchListActivity;
 import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
+import io.appium.java_client.MobileElement;
 
 public class WatchShowsTest extends BaseTest
 {
@@ -23,8 +24,7 @@ public class WatchShowsTest extends BaseTest
 	ShowActivity show_activity;
 	WatchListActivity watchlist_activity;
 	
-	@RepeatedTest(3)
-	@Test
+	//@RepeatedTest(2)
 	public void addShow()
 	{
 		boolean watched;
@@ -35,8 +35,6 @@ public class WatchShowsTest extends BaseTest
 						
 			watchlist_activity = new WatchListActivity(driver);
 			watchlist_activity.navigateToShows();
-			
-			//TODO: Implement show to watch functionality
 			watchlist_activity.openShowEpisode(propertyReader.getPropertyValue("showEpisodeToWatch"));
 			
 			show_activity = new ShowActivity(driver);
@@ -44,6 +42,27 @@ public class WatchShowsTest extends BaseTest
 			watched = show_activity.episodeRatingsVisible();
 			
 			assertTrue(watched);
+		}
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void scrollToWatchedHistory()
+	{
+		try 
+		{
+			new LoginActivity(driver).signinProcess(propertyReader.getPropertyValue("username"), propertyReader.getPropertyValue("password"));
+						
+			watchlist_activity = new WatchListActivity(driver);
+			watchlist_activity.navigateToShows();
+			watchlist_activity.scrollWatchList("WATCHED HISTORY");
+			
+			MobileElement watchedHistoryTab = (MobileElement) driver.findElementById("com.tozelabs.tvshowtime:id/headerText");
+			
+			assertTrue(watchedHistoryTab.isDisplayed());
 		}
 		catch (IOException e) 
 		{

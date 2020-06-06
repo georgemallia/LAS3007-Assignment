@@ -6,10 +6,13 @@ import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ById;
+import org.openqa.selenium.interactions.touch.TouchActions;
 
 import Utilities.CommonUtils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 
 public class WatchListActivity
 {
@@ -65,23 +68,7 @@ public class WatchListActivity
 		
 		//elemet that contains all shows 
 		MobileElement showsList = (MobileElement) mobileDriver.findElementById("com.tozelabs.tvshowtime:id/episodesList");
-				
-
 		List<MobileElement> listWrapper = showsList.findElements(By.id("com.tozelabs.tvshowtime:id/episodeWatchWrapper")); 
-
-/*
-		//show show names list
-		rtnShows =  listWrapper
-						.stream()
-						.filter(list -> list.findElement(By.id("com.tozelabs.tvshowtime:id/showName")).isEnabled())
-						.collect(Collectors.toList());
-		System.out.println("rtnShows.size: " + rtnShows.size());
-		
-		List<MobileElement> episodeNames =  listWrapper
-												.stream()
-												.filter(list -> list.findElement(By.id("com.tozelabs.tvshowtime:id/episodeName")).isEnabled())
-												.collect(Collectors.toList());
-*/
 		
 		for(MobileElement el : listWrapper)
 		{
@@ -91,8 +78,6 @@ public class WatchListActivity
 		
 		System.out.println("rtnShows.size: " + rtnShows.size());
 		System.out.println("episodeNames.size: " + episodeNames.size());
-		
-		//List<MobileElement> episodeNames = listWrapper.findElements(By.id("com.tozelabs.tvshowtime:id/episodeName"));
 
 		for(MobileElement me : rtnShows)
 		{
@@ -106,31 +91,13 @@ public class WatchListActivity
 				return;
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		/*
-		//elemet that contains all shows 
-		MobileElement showsList = (MobileElement) mobileDriver.findElementById("com.tozelabs.tvshowtime:id/episodesList");
-		
-		//show show names list
-		rtnShows = showsList.findElements(By.id("com.tozelabs.tvshowtime:id/showName"));
-
-
-		for(MobileElement me : rtnShows)
-		{
-			if(me.getText().equalsIgnoreCase(showName))
-			{
-				
-				//showTab = (MobileElement) mobileDriver.findElementById("com.tozelabs.tvshowtime:id/showEpisodeLayout");
-			//	showTab.click();
-				me.findElement(By.id("com.tozelabs.tvshowtime:id/episodeName");
-				return;
-			}
-		}*/
+	}
+	
+	public MobileElement scrollWatchList(String term)
+	{
+		return ((AndroidDriver<MobileElement>) mobileDriver)
+			.findElementByAndroidUIAutomator(
+					"new UiScrollable(new UiSelector().scrollable(true).instance(0))"
+					+ ".scrollIntoView(new UiSelector().textContains(\""+term+"\").instance(0))");
 	}
 }
