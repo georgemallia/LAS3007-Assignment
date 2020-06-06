@@ -17,8 +17,8 @@ steps/WatchEpisodeSteps.class
 Android/Tests/BaseTest.class
 Android/Tests/WatchShowsTest.class
 PageFunctions/TVTimeHomePage.class
+TestRunners/RunDBBTest.class
 steps/TestContext.class
-TestRunners/RunDBBTests.class
 PageFunctions/TVTimeShow.class
 PageFunctions/TVTimeWatchlist.class
 steps/WatchlistSteps.class

@@ -1,7 +1,7 @@
-/home/student/eclipse-workspace/Assignment/src/test/java/TestRunners/RunDBBTests.java
 /home/student/eclipse-workspace/Assignment/src/test/java/Android/Activities/WatchListActivity.java
 /home/student/eclipse-workspace/Assignment/src/test/java/Android/Activities/ProfileActivity.java
 /home/student/eclipse-workspace/Assignment/src/test/java/PageFunctions/TVTimeLogin.java
+/home/student/eclipse-workspace/Assignment/src/test/java/TestRunners/RunDBBTest.java
 /home/student/eclipse-workspace/Assignment/src/test/java/steps/SearchSteps.java
 /home/student/eclipse-workspace/Assignment/src/test/java/steps/TestContext.java
 /home/student/eclipse-workspace/Assignment/src/test/java/Android/Tests/WatchlistTest.java
@@ -10,7 +10,6 @@
 /home/student/eclipse-workspace/Assignment/src/test/java/PageFunctions/TVTimeAccountPage.java
 /home/student/eclipse-workspace/Assignment/src/test/java/PageFunctions/TVTimeShow.java
 /home/student/eclipse-workspace/Assignment/src/test/java/Android/Activities/SearchActivity.java
-/home/student/eclipse-workspace/Assignment/src/test/java/TestRunners/unitTestsRunner.java
 /home/student/eclipse-workspace/Assignment/src/test/java/PageFunctions/TVTimeWatchlist.java
 /home/student/eclipse-workspace/Assignment/src/test/java/Android/Activities/ShowActivity.java
 /home/student/eclipse-workspace/Assignment/src/test/java/Utilities/PropertyFileReader.java
