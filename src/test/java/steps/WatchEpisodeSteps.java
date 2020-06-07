@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -147,6 +148,7 @@ public class WatchEpisodeSteps
 		}
 	}
 	
+	@RepeatedTest(2)
 	@And("he clicks the season unwatch button")
 	public void he_clicks_the_season_unwatch_button()
 	{

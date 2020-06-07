@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.openqa.selenium.WebDriver;
 
 import PageFunctions.TVTimeHomePage;
@@ -34,6 +35,7 @@ public class SearchSteps
 		utils = new CommonUtils();
 	}
 
+	@RepeatedTest(2)
 	@Given("that the user is logged in")
 	public void that_the_user_is_logged_in()
 	{
