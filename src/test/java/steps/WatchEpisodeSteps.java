@@ -147,6 +147,7 @@ public class WatchEpisodeSteps
 			e.printStackTrace();
 		}
 	}
+
 	
 	@RepeatedTest(2)
 	@And("he clicks the season unwatch button")
@@ -154,9 +155,7 @@ public class WatchEpisodeSteps
 	{
 		showPage.unWatchSeason();
 	}
-	
-	
-	
+
 	@When("he marks the episode as watched")
 	public void he_marks_the_episode_as_watched()
 	{

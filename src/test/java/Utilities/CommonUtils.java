@@ -21,9 +21,12 @@ import io.appium.java_client.MobileElement;
 public class CommonUtils 
 {
 
-	public CommonUtils() 
+	public CommonUtils() {}
+	
+	public void waitForElementToBeClickableByCss(String ByLocator, WebDriver driver)
 	{
-		
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(ByLocator)));
 	}
 	
 	public void waitForPageToSettleByCSS(String ByLocator, WebDriver driver) 

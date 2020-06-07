@@ -153,7 +153,7 @@ public class TVTimeShow
 	
 	public void unWatchSeason()
 	{
-		utils.waitForPageToSettleByCSS(".watched", driver);
+		utils.waitForElementToBeClickableByCss(".watched", driver);
 		unWatchSeasonBtn.click();
 	}
 	
