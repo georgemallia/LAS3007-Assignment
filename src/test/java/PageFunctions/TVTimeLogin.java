@@ -17,10 +17,12 @@ public class TVTimeLogin
 
 	PropertyFileReader propFileReader;
 				   
-	@FindBy(xpath="//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[3]/div[2]/button")
+	//@FindBy(xpath="//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[3]/div[2]/button")
+	@FindBy(css=".views__SquareButtonView-x7wsxy-0")
 	private WebElement signinBtn;
 	
-	@FindBy(xpath="//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[3]/div[1]/li/a")
+	//@FindBy(xpath="//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[3]/div[1]/li/a")
+	@FindBy(css=".views__HideOnMobileWrapper-sc-12vav2z-0 .views__NavLink-sc-1tygrp6-1")
 	private WebElement loginBtn;
 	
 	@FindBy(name="username")
