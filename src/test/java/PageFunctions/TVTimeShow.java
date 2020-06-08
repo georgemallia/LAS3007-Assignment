@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -157,14 +158,11 @@ public class TVTimeShow
 	
 	public void unWatchSeason()
 	{
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
 		utils.waitForElementToBeClickableByCss(".watched", driver);
-		unWatchSeasonBtn.click();
+		
+		Actions actions = new Actions(driver);
+		actions.moveToElement(unWatchSeasonBtn).click().perform();
+		//unWatchSeasonBtn.click();
 	}
 	
 	public String checkSeasonWatched()
