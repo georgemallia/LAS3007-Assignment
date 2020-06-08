@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
 
 public class TVTimeLogin 
@@ -16,7 +17,8 @@ public class TVTimeLogin
 	private static final String URL = "https://www.tvtime.com/";
 
 	PropertyFileReader propFileReader;
-				   
+	CommonUtils utils;
+	
 	//@FindBy(xpath="//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[3]/div[2]/button")
 	@FindBy(css=".views__SquareButtonView-x7wsxy-0")
 	private WebElement signinBtn;
@@ -47,6 +49,7 @@ public class TVTimeLogin
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		propFileReader = new PropertyFileReader();
+		utils = new CommonUtils();
 	}
 
 	public void visitPage()
@@ -78,6 +81,7 @@ public class TVTimeLogin
 	
 	public TVTimeHomePage loginBtnClick()
 	{
+		utils.waitForElementToBeClickableByCss(".views__SubmitButton-hnsgg9-7", driver);
 		finalLoginBtn.click();
 		
 		return new TVTimeHomePage(driver);
@@ -85,6 +89,7 @@ public class TVTimeLogin
 	
 	public TVTimeHomePage signinBtnClick()
 	{
+		utils.waitForElementToBeClickableByCss(".views__SubmitButton-x7wsxy-7", driver);
 		finalSigninBtn.click();
 		
 		return new TVTimeHomePage(driver);

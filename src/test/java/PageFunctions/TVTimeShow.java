@@ -29,8 +29,9 @@ public class TVTimeShow
 
 	@FindBy(linkText="Mark season as watched")
 	private WebElement watchSeasonBtn;
-	//xpath="//div[2]/div/div[2]/div/div/a/i[2]"
-	@FindBy(css=".watched")
+	
+	@FindBy(xpath="(//a[contains(@href, '#')])[18]")
+	//@FindBy(css=".watched")
 	private WebElement unWatchSeasonBtn;
 	
 		
@@ -142,6 +143,7 @@ public class TVTimeShow
 	
 	public void getPreviousEpisode()
 	{
+		utils.waitForElementToBeClickableByCss(".previous", driver);
 		previousBtn.click();
 	}
 	

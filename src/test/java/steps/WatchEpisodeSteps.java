@@ -148,8 +148,6 @@ public class WatchEpisodeSteps
 		}
 	}
 
-	
-	@RepeatedTest(2)
 	@And("he clicks the season unwatch button")
 	public void he_clicks_the_season_unwatch_button()
 	{

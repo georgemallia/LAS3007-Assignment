@@ -35,7 +35,6 @@ public class SearchSteps
 		utils = new CommonUtils();
 	}
 
-	@RepeatedTest(2)
 	@Given("that the user is logged in")
 	public void that_the_user_is_logged_in()
 	{
@@ -56,7 +55,7 @@ public class SearchSteps
 	}
 	
 	
-	
+
 	@When("I type the full text in the search field")
 	public void I_type_the_full_text_in_the_search_field()
 	{

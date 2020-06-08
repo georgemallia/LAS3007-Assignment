@@ -112,7 +112,6 @@ public class LoginSteps
 		homePage = loginPage.signinBtnClick();
 	}
 	
-	@RepeatedTest(3)
 	@And("click the log in button")
 	public void click_the_log_in_button()
 	{
@@ -140,7 +139,6 @@ public class LoginSteps
 		assertFalse(homePage.isLoggedIn());
 	}
 	
-	@RepeatedTest(3)
 	@Then("I should be logged out")
 	public void I_should_be_logged_out()
 	{
