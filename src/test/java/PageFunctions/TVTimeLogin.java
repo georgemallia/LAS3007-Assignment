@@ -81,7 +81,7 @@ public class TVTimeLogin
 	
 	public TVTimeHomePage loginBtnClick()
 	{
-		utils.waitForElementToBeClickableByCss(".views__SubmitButton-hnsgg9-7", driver);
+		utils.waitForPageToSettleByCSS(".views__SubmitButton-hnsgg9-7", driver);
 		finalLoginBtn.click();
 		
 		return new TVTimeHomePage(driver);
@@ -89,7 +89,7 @@ public class TVTimeLogin
 	
 	public TVTimeHomePage signinBtnClick()
 	{
-		utils.waitForElementToBeClickableByCss(".views__SubmitButton-x7wsxy-7", driver);
+		utils.waitForPageToSettleByCSS(".views__SubmitButton-x7wsxy-7", driver);
 		finalSigninBtn.click();
 		
 		return new TVTimeHomePage(driver);
