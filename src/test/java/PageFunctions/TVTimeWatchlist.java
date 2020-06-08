@@ -92,6 +92,8 @@ public class TVTimeWatchlist
 	//to confirm that the show is under watch next tab
 	public String checkShowsUnderWatchNext(String showName)
 	{
+		utils.waitForPageToSettleByXpath("/html/body/div[3]/div[3]/div/div[2]/div/div/section[1]/ul", driver);
+		
 		WebElement showList = driver.findElement(By.xpath("/html/body/div[3]/div[3]/div/div[2]/div/div/section[1]/ul")); 
 		List<WebElement> li_All = showList.findElements(By.tagName("li"));
 		

@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
@@ -155,6 +157,11 @@ public class TVTimeShow
 	
 	public void unWatchSeason()
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#season1-content > div > div > img")));
+		
+		
 		utils.waitForElementToBeClickableByCss(".watched", driver);
 		unWatchSeasonBtn.click();
 	}
