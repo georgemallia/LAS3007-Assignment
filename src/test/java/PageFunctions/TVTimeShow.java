@@ -3,6 +3,7 @@ package PageFunctions;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,7 +34,8 @@ public class TVTimeShow
 	@FindBy(linkText="Mark season as watched")
 	private WebElement watchSeasonBtn;
 	
-	@FindBy(xpath="(//a[contains(@href, '#')])[18]")
+	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div/div[9]/div/div[1]/div[1]/div[2]/div/div[1]/div")
+			//xpath="(//a[contains(@href, '#')])[18]")
 	//@FindBy(css=".watched")
 	private WebElement unWatchSeasonBtn;
 	
@@ -158,11 +160,13 @@ public class TVTimeShow
 	
 	public void unWatchSeason()
 	{
-		utils.waitForElementToBeClickableByCss(".watched", driver);
+		System.out.println("UnWatch Attempt");
 		
-		Actions actions = new Actions(driver);
-		actions.moveToElement(unWatchSeasonBtn).click().perform();
-		//unWatchSeasonBtn.click();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+		
+		unWatchSeasonBtn.click();
+		System.out.println("unWatchClick");
 	}
 	
 	public String checkSeasonWatched()
