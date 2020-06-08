@@ -155,6 +155,9 @@ public class TVTimeShow
 	
 	public void clickWatchSeasons()
 	{
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+		
 		watchSeasonBtn.click();
 	}
 	
