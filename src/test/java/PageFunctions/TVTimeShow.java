@@ -157,11 +157,12 @@ public class TVTimeShow
 	
 	public void unWatchSeason()
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 20);
-
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#season1-content > div > div > img")));
-		
-		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		utils.waitForElementToBeClickableByCss(".watched", driver);
 		unWatchSeasonBtn.click();
 	}
