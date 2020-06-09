@@ -52,7 +52,7 @@ public class TVTimeSearch
 	{
 		searchTxtbx.sendKeys(searchInput);
 		searchTxtbx.sendKeys(Keys.ENTER);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	public int getNumberOfResults()
