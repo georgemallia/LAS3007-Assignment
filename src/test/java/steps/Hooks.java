@@ -1,5 +1,7 @@
 package steps;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 
 import Utilities.WebDriverFactory;
@@ -22,6 +24,7 @@ public class Hooks
 		System.out.println("Hook Class: Creating Driver");
 		System.setProperty("browser", "firefox");	
 		driver = WebDriverFactory.createWebDriver();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		testContext.setDriver(driver);
 	}
 
