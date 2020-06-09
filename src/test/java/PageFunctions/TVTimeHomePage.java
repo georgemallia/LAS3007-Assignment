@@ -13,7 +13,8 @@ public class TVTimeHomePage
 	@FindBy(xpath="//*[@id=\"home-link\"]/img")
 	private WebElement homeBtn;
 		
-	@FindBy(xpath="//*[@id=\"container\"]/div[3]/div[2]/div/div/div[2]/section[4]/a")
+	//xpath="//*[@id=\"container\"]/div[3]/div[2]/div/div/div[2]/section[4]/a"
+	@FindBy(css=".signout-link")
 	private WebElement signOutBtn;
 	
 	public TVTimeHomePage(WebDriver driver)

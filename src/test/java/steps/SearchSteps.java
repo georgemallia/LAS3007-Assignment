@@ -107,7 +107,7 @@ public class SearchSteps
 	@Then("results should be displayed")
 	public void results_should_be_displayed()
 	{
-		utils.waitForPageToSettleByXpath("//section[@id='shows-results']/h1", driver);
+		utils.waitForPageToSettleById("search-results-container", driver);
 		assertTrue(searchPage.resultsTitle.isDisplayed());
 		assertTrue(searchPage.getNumberOfResults() >= 0);
 	}
@@ -115,7 +115,7 @@ public class SearchSteps
 	@Then("no results should be displayed")
 	public void no_results_should_be_displayed()
 	{
-		utils.waitForPageToSettleByXpath("//div[@id='search-results-container']/div", driver);
+		utils.waitForPageToSettleById("search-results-container", driver);
 		assertTrue(searchPage.noresultsTab.isDisplayed());
 		assertTrue(searchPage.getNumberOfResults() == 0);
 	}

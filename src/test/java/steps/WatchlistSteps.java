@@ -77,7 +77,8 @@ public class WatchlistSteps
 			searchPage = new TVTimeSearch(driver);
 			searchPage.searchItem(searchInput);
 			
-			utils.waitForPageToSettleByXpath("//section[@id='shows-results']/h1", driver);
+			//utils.waitForPageToSettleByXpath("//section[@id='shows-results']/h1", driver);
+			utils.waitForPageToSettleById("search-results-container", driver);
 		} 
 		catch (IOException e)
 		{
