@@ -41,6 +41,12 @@ public class CommonUtils
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ByLocator)));
 	}
 	
+	public void waitForPageToSettleById(String ByLocator, WebDriver driver) 
+	{   
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ByLocator)));
+	}
+	
 	public List<String> returnMultipleShowNames(String shows)
 	{
 		List<String> showList = Arrays.asList(shows.split(","))

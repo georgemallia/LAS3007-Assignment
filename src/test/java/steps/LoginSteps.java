@@ -127,9 +127,10 @@ public class LoginSteps
 	
 	
 	@Then("I should be logged in")
-	public void i_shoulld_be_logged_in() 
+	public void i_should_be_logged_in() 
 	{
-		utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
+		//utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
+		utils.waitForPageToSettleById("home-link", driver);
 		assertTrue(homePage.isLoggedIn());
 	}
 	

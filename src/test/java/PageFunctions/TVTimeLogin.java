@@ -62,6 +62,7 @@ public class TVTimeLogin
 	{
 		try 
 		{
+			utils.waitForElementToBeClickableByCss(".views__HideOnMobileWrapper-sc-12vav2z-0 .views__NavLink-sc-1tygrp6-1", driver);
 			loginBtn.click();
 			
 	        //explicit Wait

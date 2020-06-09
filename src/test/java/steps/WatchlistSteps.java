@@ -64,7 +64,7 @@ public class WatchlistSteps
 		}
 		
 		homePage = loginPage.loginBtnClick();
-		utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
+		utils.waitForPageToSettleById("home-link", driver);
 	}
 	
 	
