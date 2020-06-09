@@ -80,8 +80,8 @@ public class WatchEpisodeSteps
 			searchPage = new TVTimeSearch(driver);
 			searchPage.searchItem(searchInput);
 			
-			//utils.waitForPageToSettleByXpath("//section[@id='shows-results']/h1", driver);
-			utils.waitForPageToSettleById("search-results-container", driver);
+			utils.waitForPageToSettleByXpath("//section[@id='shows-results']/h1", driver);
+			//utils.waitForPageToSettleById("search-results-container", driver);
 			
 			searchPage.addShow(searchInput);
 		} 
