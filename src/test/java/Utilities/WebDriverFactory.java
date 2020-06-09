@@ -29,7 +29,14 @@ public class WebDriverFactory
 
 			case "chrome":
 				System.setProperty("webdriver.chrome.driver", PATH+"chromedriver");
-				return new ChromeDriver();
+				if(driver == null || ((RemoteWebDriver)driver).getSessionId() == null)
+				{
+					return new FirefoxDriver();
+				}
+				else
+				{
+					return driver;
+				}
 			case "edge":
 				System.setProperty("webdriver.edge.driver", PATH+"msedgedriver.exe");
 				return new EdgeDriver();
