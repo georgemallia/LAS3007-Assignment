@@ -1,6 +1,7 @@
 package PageFunctions;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -49,6 +50,7 @@ public class TVTimeSearch
 	public void searchItem(String searchInput)
 	{
 		searchTxtbx.sendKeys(searchInput);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	public int getNumberOfResults()
