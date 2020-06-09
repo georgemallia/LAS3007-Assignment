@@ -20,7 +20,7 @@ public class Hooks
 	public void openBrowser() 
 	{
 		System.out.println("Hook Class: Creating Driver");
-		System.setProperty("browser", "firefox");	
+		System.setProperty("browser", "chrome");	
 		driver = WebDriverFactory.createWebDriver();
 		testContext.setDriver(driver);
 	}
