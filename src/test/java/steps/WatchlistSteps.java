@@ -78,7 +78,7 @@ public class WatchlistSteps
 			searchPage.searchItem(searchInput);
 			
 			utils.waitForPageToSettleByXpath("//section[@id='shows-results']/h1", driver);
-			//utils.waitForPageToSettleById("search-results-container", driver);
+			utils.waitForPageToSettleById("search-results-container", driver);
 		} 
 		catch (IOException e)
 		{
