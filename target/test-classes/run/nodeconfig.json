@@ -4,13 +4,13 @@
          "browserName":"firefox",
          "marionette":true,
          "version":76,
-         "maxInstances":3,
+         "maxInstances":20,
          "seleniumProtocol":"WebDriver"
       },
       {
          "browserName":"chrome",
          "version":81,
-         "maxInstances":3,
+         "maxInstances":20,
          "seleniumProtocol":"WebDriver"
       }
    ],

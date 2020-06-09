@@ -67,6 +67,12 @@ public class WatchEpisodeSteps
 		homePage = loginPage.loginBtnClick();
 		utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
 		utils.waitForPageToSettleById("home-link", driver);
+//		try {
+//			Thread.sleep(2000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	

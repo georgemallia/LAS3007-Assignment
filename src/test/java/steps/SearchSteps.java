@@ -53,6 +53,12 @@ public class SearchSteps
 		homePage = loginPage.loginBtnClick();
 		utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
 		utils.waitForPageToSettleById("home-link", driver);
+//		try {
+//			Thread.sleep(2000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	
@@ -116,8 +122,8 @@ public class SearchSteps
 	@Then("no results should be displayed")
 	public void no_results_should_be_displayed()
 	{
-		utils.waitForPageToSettleById("search-results-container", driver);
-		utils.waitForPageToSettleByXpath("//section[@id='shows-results']/h1", driver);
+		//utils.waitForPageToSettleById("search-results-container", driver);
+		utils.waitForPageToSettleByXpath("//div[@id='search-results-container']/div", driver);
 		assertTrue(searchPage.noresultsTab.isDisplayed());
 		assertTrue(searchPage.getNumberOfResults() == 0);
 	}
