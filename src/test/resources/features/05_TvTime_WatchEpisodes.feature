@@ -1,3 +1,4 @@
+@TO_RUN
 Feature: Watch Episode
 
   Scenario: Watch an Episode

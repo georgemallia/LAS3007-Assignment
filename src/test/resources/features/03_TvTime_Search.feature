@@ -1,3 +1,4 @@
+@TO_RUN
 Feature: TvTime_Search
 
   Scenario: Basic Search

@@ -1,3 +1,4 @@
+@TO_RUN
 Feature: AddShow
 
   Scenario: Adding show to watchlist
