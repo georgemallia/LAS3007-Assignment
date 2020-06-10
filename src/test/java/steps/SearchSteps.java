@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 
 import org.junit.jupiter.api.RepeatedTest;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 import PageFunctions.TVTimeHomePage;
@@ -43,6 +44,7 @@ public class SearchSteps
 		
 		try
 		{
+			utils.waitForPageToSettleByCSS(".pages__HomePageView-sc-6kvjaa-0", driver);
 			loginPage.loginProcess(propFileReader.getPropertyValue("username"), propFileReader.getPropertyValue("password"));
 		} 
 		catch (IOException e)
@@ -51,8 +53,16 @@ public class SearchSteps
 		}
 		
 		homePage = loginPage.loginBtnClick();
-		utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
-		utils.waitForPageToSettleById("home-link", driver);
+		try 
+		{
+			utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
+		} 
+		catch (NoSuchElementException e) 
+		{
+			System.out.println("Could Not find side nav. /n Attempting to find home BTN");
+			utils.waitForPageToSettleById("home-link", driver);
+		}
+		
 //		try {
 //			Thread.sleep(2000);
 //		} catch (InterruptedException e) {

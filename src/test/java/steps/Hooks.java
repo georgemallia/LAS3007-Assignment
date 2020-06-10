@@ -46,7 +46,7 @@ public class Hooks
 	
 		driver = new RemoteWebDriver(gridURL, capability);
 
-		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		testContext.setDriver(driver);
 	}
 

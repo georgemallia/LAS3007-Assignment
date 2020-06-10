@@ -60,6 +60,7 @@ public class TVTimeWatchlist
 	
 	public List<String> getShowList()
 	{
+		System.out.println("Attempting to get Show List");
 		List<String> myShows = new ArrayList<String>();
 		
 		//WebElement showList = driver.findElement(By.xpath("//*[@id=\"to-watch\"]/ul")); 
@@ -75,7 +76,7 @@ public class TVTimeWatchlist
 		    	try 
 		    	{
 					WebElement show = driver.findElement(By.xpath("/html/body/div[3]/div[3]/div/div[2]/div/div/section[" + j+1 + "]/ul/li[" + i + "]/div[3]/a"));
-					System.out.println(show.getText().toLowerCase().trim());
+					System.out.println("Show from Watchlist: " + show.getText().toLowerCase().trim());
 
 					myShows.add(show.getText().toLowerCase().trim());
 				} 
@@ -85,7 +86,7 @@ public class TVTimeWatchlist
 				}
 		    }
 		}
-	   
+		System.out.println("Returning Show List");
 	    return myShows;	
 	}	
 	

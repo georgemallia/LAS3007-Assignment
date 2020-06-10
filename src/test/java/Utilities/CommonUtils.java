@@ -29,6 +29,12 @@ public class CommonUtils
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(ByLocator)));
 	}
 	
+	public void waitForElementToBeClickableByXpath(String ByLocator, WebDriver driver)
+	{
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ByLocator)));
+	}
+	
 	public void waitForPageToSettleByCSS(String ByLocator, WebDriver driver) 
 	{   
 		WebDriverWait wait = new WebDriverWait(driver, 20);

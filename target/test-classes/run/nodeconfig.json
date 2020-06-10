@@ -9,7 +9,7 @@
       },
       {
          "browserName":"chrome",
-         "version":81,
+         "version":83,
          "maxInstances":20,
          "seleniumProtocol":"WebDriver"
       }

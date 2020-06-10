@@ -79,6 +79,7 @@ public class TVTimeSearch
 	    			    		
 	    		if(strCmp.equalsIgnoreCase(searchInput))
 	    		{
+	    			utils.waitForElementToBeClickableByXpath("/html/body/div[3]/div[3]/div/div[1]/div/section[1]/ul/li["+ i +"]/div[3]/h2/a", driver);
 	    			showBtn.click();
 	    			break;
 	    		}
@@ -89,8 +90,12 @@ public class TVTimeSearch
 			}
 	    }
 		
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		utils.waitForPageToSettleByCSS(".info-zone", driver);
+		System.out.println("Attempting to click add btn");
+		utils.waitForElementToBeClickableByCss(".follow-btn", driver);
 		addShowBtn.click();
+		System.out.println("Add btn clicked");
 	}
 	
 	public String checkIfAdded(String searchInput)
