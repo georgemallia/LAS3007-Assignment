@@ -45,7 +45,7 @@ public class TVTimeSearch
 		PageFactory.initElements(driver, this);
 		propFileReader = new PropertyFileReader();
 		utils = new CommonUtils();
-		
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 	
 	public void searchItem(String searchInput)
