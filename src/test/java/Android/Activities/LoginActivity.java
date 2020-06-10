@@ -11,6 +11,7 @@ public class LoginActivity
 	private AppiumDriver<MobileElement> mobileDriver;
 	
 	private By signinBy = By.id("com.tozelabs.tvshowtime:id/btLogin");
+	private By popupBy = By.id("com.tozelabs.tvshowtime:id/md_buttonDefaultPositive");
 	private By signLabelBy = By.id("com.tozelabs.tvshowtime:id/toolbar");
 	private By btNavBy = By.id("com.tozelabs.tvshowtime:id/bottomNavigation");
 	
@@ -23,11 +24,20 @@ public class LoginActivity
 	
 	public void signinProcess(String username, String password)
 	{
-		utils.waitForPresence(signinBy, mobileDriver);
+		utils.waitForPresence(popupBy, mobileDriver);
+		
+		MobileElement popup = (MobileElement) mobileDriver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup");
+		
+		if(popup.isDisplayed())
+		{
+			MobileElement el1 = (MobileElement) mobileDriver.findElementById("com.tozelabs.tvshowtime:id/md_buttonDefaultPositive");
+			el1.click();
+		}
+		
 		
 		//sign in Button
-		MobileElement signinBtn = (MobileElement) mobileDriver.findElementById("com.tozelabs.tvshowtime:id/btLogin");
-		signinBtn.click();
+	//	MobileElement signinBtn = (MobileElement) mobileDriver.findElementById("com.tozelabs.tvshowtime:id/btLogin");
+	//	signinBtn.click();
 
 		//wait for username field to be present
 		utils.waitForPresence(signLabelBy, mobileDriver);
