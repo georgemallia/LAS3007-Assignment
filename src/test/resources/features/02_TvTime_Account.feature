@@ -1,4 +1,3 @@
-@TO_RUN
 Feature: TvTime_Account
 
   Scenario: Account Details Change
