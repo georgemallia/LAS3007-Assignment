@@ -33,7 +33,8 @@ public class TVTimeSearch
 	@FindBy(xpath="//h2/a")
 	private WebElement displayTitleTxt;
 	
-	@FindBy(css=".follow-btn")
+	//@FindBy(css=".follow-btn")
+	@FindBy(xpath="//*[@id=\"top-banner\"]/div/div[3]/div/div/div/a[1]")
 	private WebElement addShowBtn;
 	
 	private WebElement showBtn;
