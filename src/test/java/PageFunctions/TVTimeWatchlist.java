@@ -39,6 +39,7 @@ public class TVTimeWatchlist
  
 	public String visitWatchListPage()
 	{
+		System.out.println("Opening watchlist");
 		watchlistBtn.click();
 		try
 		{
@@ -104,10 +105,12 @@ public class TVTimeWatchlist
 	    	{
 				WebElement show = driver.findElement(By.xpath("/html/body/div[3]/div[3]/div/div[2]/div/div/section[1]/ul/li[" + i + "]/div[3]/a"));
 				System.out.println(show.getText().toLowerCase().trim());
+				System.out.println(showName.toLowerCase().trim());
 				
 				String showCmp = show.getText().toLowerCase().trim();
 				if(showCmp.equalsIgnoreCase(showName.trim()))
 				{
+					System.out.println("Returning show is under watch next");
 					return "Show is under Watch Next";
 				}
 				

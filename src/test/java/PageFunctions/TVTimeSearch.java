@@ -34,7 +34,8 @@ public class TVTimeSearch
 	private WebElement displayTitleTxt;
 	
 	//@FindBy(css=".follow-btn")
-	@FindBy(xpath="//*[@id=\"top-banner\"]/div/div[3]/div/div/div/a[1]")
+	//@FindBy(xpath="//*[@id=\"top-banner\"]/div/div[3]/div/div/div/a[1]")
+	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div/div[4]/div/div[3]/div/div/div/a[1]")
 	private WebElement addShowBtn;
 	
 	private WebElement showBtn;
@@ -46,7 +47,7 @@ public class TVTimeSearch
 		PageFactory.initElements(driver, this);
 		propFileReader = new PropertyFileReader();
 		utils = new CommonUtils();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	//	driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 	
 	public void searchItem(String searchInput)

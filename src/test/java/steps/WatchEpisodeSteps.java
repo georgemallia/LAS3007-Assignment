@@ -82,14 +82,18 @@ public class WatchEpisodeSteps
 	{
 		try 
 		{
+			System.out.println("Attempting to search..");
 			searchInput = propFileReader.getPropertyValue("showInput");
 			searchPage = new TVTimeSearch(driver);
 			searchPage.searchItem(searchInput);
+			System.out.println("Search Ended..");
 			
 			utils.waitForPageToSettleByXpath("//section[@id='shows-results']/h1", driver);
 			utils.waitForPageToSettleById("search-results-container", driver);
 			
+			System.out.println("Attempting to Add Show..");
 			searchPage.addShow(searchInput);
+			System.out.println("Add Show Operation Ended..");
 		} 
 		catch (IOException e)
 		{
@@ -102,6 +106,7 @@ public class WatchEpisodeSteps
 	{
 		try 
 		{
+			System.out.println("Opening next episode to watch..");
 			searchInput = propFileReader.getPropertyValue("showInput");
 			watchlistPage = new TVTimeWatchlist(driver);
 			watchlistPage.visitWatchListPage();
@@ -118,7 +123,9 @@ public class WatchEpisodeSteps
 	@And("the show will be listed under watch next tab")
 	public void the_show_will_be_listed_under_watch_next_tab()
 	{
+		System.out.println("Visiting watchlist");
 		watchlistPage.visitWatchListPage();
+		System.out.println("Checking shows under watch next..");
 		watchNextResult = watchlistPage.checkShowsUnderWatchNext(searchInput);
 		assertEquals("Show is under Watch Next", watchNextResult);
 	}
@@ -159,7 +166,7 @@ public class WatchEpisodeSteps
 	@And("he clicks the season unwatch button")
 	public void he_clicks_the_season_unwatch_button()
 	{
-		showPage.unWatchSeason();
+		showPage.unWatchSeason(); 
 	}
 
 	@When("he marks the episode as watched")
@@ -195,6 +202,7 @@ public class WatchEpisodeSteps
 	public void the_watched_button_text_is_changed_to_watched()
 	{
 		WebElement watchedBtn = driver.findElement(By.cssSelector(".watched-label"));
+		utils.waitForElementToBeClickableByCss(".watched-label", driver);
 		
 		assertEquals("Show episode marked as watched", result);
 		System.out.println("watchedBtn.getText: " + watchedBtn.getText());
