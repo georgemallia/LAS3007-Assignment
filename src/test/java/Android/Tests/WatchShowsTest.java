@@ -23,7 +23,7 @@ public class WatchShowsTest extends BaseTest
 	ShowActivity show_activity;
 	WatchListActivity watchlist_activity;
 	
-	@RepeatedTest(2)
+	@Test
 	public void addShow()
 	{
 		boolean watched;
