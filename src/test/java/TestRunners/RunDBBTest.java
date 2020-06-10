@@ -11,7 +11,7 @@ import io.cucumber.junit.Cucumber;
 		strict = true, // undefined and pending steps should be treated as errors
 		features = "src/test/resources/features", // path to feature files
 		glue  = {"steps"}
-		//,tags = {"@TO_RUN"}
+		,tags = {"@TO_RUN"}
 	)
 
 public class RunDBBTest {}

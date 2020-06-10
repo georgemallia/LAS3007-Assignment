@@ -50,9 +50,9 @@ public class TVTimeSearch
 	
 	public void searchItem(String searchInput)
 	{
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		utils.waitForPageToSettleById("global-search-input", driver);
 		searchTxtbx.sendKeys(searchInput);
-		//searchTxtbx.sendKeys(Keys.ENTER);
-		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	public int getNumberOfResults()

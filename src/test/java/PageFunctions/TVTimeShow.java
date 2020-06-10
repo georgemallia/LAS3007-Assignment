@@ -81,6 +81,8 @@ public class TVTimeShow
 	
 	public void openShowDescription(String showName)
 	{
+		System.out.println("Attempting to open show description");
+		
 		WebElement showList = driver.findElement(By.xpath("//*[@id=\"to-watch\"]/ul")); 
 		List<WebElement> li_All = showList.findElements(By.tagName("li"));
 	    System.out.println(li_All.size());
@@ -95,7 +97,10 @@ public class TVTimeShow
 				String showCmp = show.getText().toLowerCase().trim();
 				if(showCmp.equalsIgnoreCase(showName))
 				{
+					utils.waitForElementToBeClickableByXpath("/html/body/div[3]/div[3]/div/div[2]/div/div/section/ul/li[" + i + "]/div[3]/a", driver);
+					System.out.println("Attempting to open show");
 					show.click();
+					System.out.println("Show description opening..");
 					break;
 				}
 			} 

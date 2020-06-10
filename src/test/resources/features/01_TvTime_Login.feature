@@ -1,3 +1,4 @@
+@TO_RUN
 Feature: TvTime_Login
 
   Scenario: Sucessful Signin

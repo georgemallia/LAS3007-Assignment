@@ -144,7 +144,9 @@ public class LoginSteps
 	public void I_should_be_logged_out()
 	{
 		//waiting for signout page nav to load
-		utils.waitForPageToSettleByXpath("//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[1]", driver);
+	//	utils.waitForPageToSettleByXpath("//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[1]", driver);
+		
+		utils.waitForPageToSettleByXpath("/html/body/div[1]/div/div/nav/div[1]", driver);	
 		assertFalse(homePage.isLoggedIn());
 	}
 }
