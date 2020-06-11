@@ -73,7 +73,8 @@ public class TVTimeShow
 			} 
 	    	catch (NoSuchElementException e) 
 	    	{
-	    		continue;
+	    		//continue;
+	    		break;
 			}
 	    }
 	}
@@ -106,7 +107,8 @@ public class TVTimeShow
 			} 
 	    	catch (NoSuchElementException e) 
 	    	{
-	    		continue;
+	    		//continue;
+	    		break;
 			}
 	    }
 	}
