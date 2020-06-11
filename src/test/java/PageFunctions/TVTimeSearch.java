@@ -96,10 +96,10 @@ public class TVTimeSearch
 		utils.waitForElementToBeClickableByCss(".follow-btn", driver);
 		addShowBtn.click();
 		
-		if(!addShowBtn.getAttribute("class").equals("cta-btn follow-btn   active"))
-		{
-			addShowBtn.click();
-		}
+		//if(!addShowBtn.getAttribute("class").equals("cta-btn follow-btn   active"))
+		//{
+		//	addShowBtn.click();
+		//}
 
 		System.out.println("Add btn clicked");
 	}

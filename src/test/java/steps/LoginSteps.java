@@ -121,7 +121,7 @@ public class LoginSteps
 	@And("when I click the log out button")
 	public void when_i_click_the_log_out_button()
 	{
-		utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
+		//utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
 		homePage.logoutProcess();
 	}
 	
