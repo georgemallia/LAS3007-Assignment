@@ -15,7 +15,7 @@ import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
 import io.appium.java_client.MobileElement;
 
-public class WatchShowsTest extends BaseTest
+public class WatchShowsTestAndroid extends BaseTestAndroid
 {
 	PropertyFileReader propertyReader = new PropertyFileReader();
 	CommonUtils utils = new CommonUtils();

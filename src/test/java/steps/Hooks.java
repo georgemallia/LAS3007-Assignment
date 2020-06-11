@@ -42,11 +42,20 @@ public class Hooks
 		gridURL = new URL(propertyReader.getPropertyValue("gridUrl"));
 		
 		capability = new DesiredCapabilities();
-		capability.setBrowserName(propertyReader.getPropertyValue("browser"));
-	
+		
+		if (System.getProperty("browser") != null)
+		{
+	        capability.setBrowserName(System.getProperty("browser"));
+		} 
+		else 
+		{
+		    capability.setBrowserName(propertyReader.getPropertyValue("browser"));
+		}
+			
 		driver = new RemoteWebDriver(gridURL, capability);
 
-		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+		driver.manage().window().maximize();
 		testContext.setDriver(driver);
 	}
 

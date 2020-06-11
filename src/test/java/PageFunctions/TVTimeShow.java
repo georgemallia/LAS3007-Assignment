@@ -35,7 +35,6 @@ public class TVTimeShow
 	private WebElement watchSeasonBtn;
 	
 	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div/div[9]/div/div[1]/div[1]/div[2]/div/div[1]/div")
-			//xpath="(//a[contains(@href, '#')])[18]")
 	//@FindBy(css=".watched")
 	private WebElement unWatchSeasonBtn;
 	
@@ -116,6 +115,7 @@ public class TVTimeShow
 	
 	public String clickWatched()
 	{
+		utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
 		System.out.println("Marking episode watched");
 		System.out.println("Watch BTN: "  + watchedBtn.getAttribute("class"));
 		if(watchedBtn.getAttribute("class").equals("not-watched-label"))
@@ -137,6 +137,7 @@ public class TVTimeShow
 	
 	public String clickUnwatched()
 	{
+		utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
 		System.out.println("Marking episode unwatch");
 		System.out.println("Watch BTN: "  + unwatchBtn.getAttribute("class"));
 		if(unwatchBtn.getAttribute("class").trim().equals("watched-label"))
@@ -168,6 +169,9 @@ public class TVTimeShow
 	public void clickWatchSeasons()
 	{
 		System.out.println("Attempting to Watch season");
+		utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
+		utils.waitForElementToBeClickableByLinkText("Mark season as watched", driver);
+		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,400)");
 		
@@ -178,6 +182,7 @@ public class TVTimeShow
 	public void unWatchSeason()
 	{
 		System.out.println("Season UnWatch Attempt");
+		utils.waitForElementToBeClickableByCss(".watched", driver);
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("window.scrollBy(0,400)");
@@ -225,10 +230,14 @@ public class TVTimeShow
 	
 	public String selectPreviousSeason()
 	{
+		utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
 		System.out.println("Attempting to Select Previous season");
 		WebElement currentSelectedSeason = driver.findElement(By.id("dSeasons"));
+		
+		utils.waitForPageToSettleById("dSeasons", driver);
 		currentSelectedSeason.click();
 		
+		utils.waitForPageToSettleByCSS(".open > .dropdown-menu", driver);
 		WebElement seasonList = driver.findElement(By.cssSelector(".open > .dropdown-menu"));
 		List<WebElement> li_All = seasonList.findElements(By.tagName("li"));
 	    System.out.println(li_All.size());
@@ -246,7 +255,7 @@ public class TVTimeShow
 	    		if(pos != 0)
 	    		{
 	    			li_All.get(pos-1).click();
-	    			System.out.println("Watch season Btn pressed");
+	    			System.out.println("Previous season Btn pressed");
 	    			return "Previous Season Selected";
 	    		}
 	    		else

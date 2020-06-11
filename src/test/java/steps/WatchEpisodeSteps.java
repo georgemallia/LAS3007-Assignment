@@ -168,7 +168,7 @@ public class WatchEpisodeSteps
 	{
 		showPage.unWatchSeason(); 
 	}
-
+//.optanon-alert-box-wrapper
 	@When("he marks the episode as watched")
 	public void he_marks_the_episode_as_watched()
 	{

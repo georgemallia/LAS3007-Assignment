@@ -17,7 +17,7 @@ import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
 
 //Feature 1 Android Test
-public class WatchlistTest extends BaseTest
+public class WatchlistTestAndroid extends BaseTestAndroid
 {
 	PropertyFileReader propertyReader = new PropertyFileReader();
 	CommonUtils utils = new CommonUtils();

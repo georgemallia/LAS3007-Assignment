@@ -1,8 +1,9 @@
+Android/Tests/BaseTestAndroid.class
+Android/Tests/WatchShowsTestAndroid.class
 Android/Activities/SearchActivity.class
 Utilities/CommonUtils.class
 Utilities/WebDriverFactory.class
 PageFunctions/TVTimeLogin.class
-Android/Tests/WatchlistTest.class
 steps/AccountSteps.class
 steps/Hooks.class
 Android/Activities/ProfileActivity.class
@@ -14,8 +15,7 @@ Android/Activities/WatchListActivity.class
 PageFunctions/TVTimeSearch.class
 steps/SearchSteps.class
 steps/WatchEpisodeSteps.class
-Android/Tests/BaseTest.class
-Android/Tests/WatchShowsTest.class
+Android/Tests/WatchlistTestAndroid.class
 PageFunctions/TVTimeHomePage.class
 TestRunners/RunDBBTest.class
 steps/TestContext.class

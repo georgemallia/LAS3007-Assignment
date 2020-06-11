@@ -13,6 +13,28 @@
 		<selenium.version>3.141.59</selenium.version>
     </properties>
 
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.22.1</version>
+					<configuration>
+						<skip>false</skip>
+						<parallel>all</parallel>
+						<threadCount>2</threadCount>
+						<threadCountMethods>1</threadCountMethods>
+						<perCoreThreadCount>false</perCoreThreadCount>
+						<useUnlimitedThreads>true</useUnlimitedThreads>
+						<forkCount>2</forkCount>
+						<reuseForks>true</reuseForks>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+    
+    
 	<dependencies>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>

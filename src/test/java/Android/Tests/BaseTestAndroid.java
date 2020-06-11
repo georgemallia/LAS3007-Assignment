@@ -21,7 +21,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
-public class BaseTest 
+public class BaseTestAndroid 
 {
 	private static DesiredCapabilities dc;
 	private static URL url;

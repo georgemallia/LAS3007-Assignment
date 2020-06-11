@@ -47,12 +47,10 @@ public class TVTimeSearch
 		PageFactory.initElements(driver, this);
 		propFileReader = new PropertyFileReader();
 		utils = new CommonUtils();
-	//	driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 	
 	public void searchItem(String searchInput)
 	{
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		utils.waitForPageToSettleById("global-search-input", driver);
 		searchTxtbx.sendKeys(searchInput);
 	}
@@ -92,7 +90,6 @@ public class TVTimeSearch
 			}
 	    }
 		
-		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		utils.waitForPageToSettleByCSS(".info-zone", driver);
 		System.out.println("Attempting to click add btn");
 		utils.waitForElementToBeClickableByCss(".follow-btn", driver);
