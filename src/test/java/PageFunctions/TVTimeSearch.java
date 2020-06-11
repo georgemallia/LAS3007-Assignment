@@ -64,7 +64,6 @@ public class TVTimeSearch
 	
 	public void addShow(String searchInput)
 	{			 
-		utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
 		WebElement showList = driver.findElement(By.xpath("//*[@id=\"shows-results\"]/ul")); 
 		List<WebElement> li_All = showList.findElements(By.tagName("li"));
 		System.out.println(li_All.size());
@@ -92,7 +91,7 @@ public class TVTimeSearch
 			}
 	    }
 		
-		//utils.waitForPageToSettleByCSS(".info-zone", driver);
+		utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
 		System.out.println("Attempting to click add btn");
 		utils.waitForElementToBeClickableByCss(".follow-btn", driver);
 		addShowBtn.click();
