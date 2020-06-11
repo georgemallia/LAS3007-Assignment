@@ -33,9 +33,9 @@ public class TVTimeSearch
 	@FindBy(xpath="//h2/a")
 	private WebElement displayTitleTxt;
 	
-	//@FindBy(css=".follow-btn")
+	@FindBy(css=".follow-btn")
 	//@FindBy(xpath="//*[@id=\"top-banner\"]/div/div[3]/div/div/div/a[1]")
-	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div/div[4]/div/div[3]/div/div/div/a[1]")
+	//@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div/div[4]/div/div[3]/div/div/div/a[1]")
 	private WebElement addShowBtn;
 	
 	private WebElement showBtn;
@@ -87,11 +87,12 @@ public class TVTimeSearch
 	    	}	    	
 	    	catch (NoSuchElementException e) 
 	    	{
-	    		continue;
+	    		//continue;
+	    		break;
 			}
 	    }
 		
-		utils.waitForPageToSettleByCSS(".info-zone", driver);
+		//utils.waitForPageToSettleByCSS(".info-zone", driver);
 		System.out.println("Attempting to click add btn");
 		utils.waitForElementToBeClickableByCss(".follow-btn", driver);
 		addShowBtn.click();
@@ -124,7 +125,8 @@ public class TVTimeSearch
 			} 
 	    	catch (NoSuchElementException e) 
 	    	{
-	    		continue;
+	    		//continue;
+	    		break;
 			}
 	    }
 
