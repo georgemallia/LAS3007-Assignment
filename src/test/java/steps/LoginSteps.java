@@ -11,7 +11,10 @@ import org.junit.jupiter.api.RepeatedTest;
 
 import java.io.IOException;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+
+import com.sun.corba.se.impl.orbutil.threadpool.TimeoutException;
 
 import PageFunctions.TVTimeHomePage;
 import PageFunctions.TVTimeLogin;
@@ -121,7 +124,19 @@ public class LoginSteps
 	@And("when I click the log out button")
 	public void when_i_click_the_log_out_button()
 	{
-		//utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
+		try 
+		{
+			utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
+		}
+		catch(NoSuchElementException e)
+		{
+			System.out.println("Optanon-alert was not shown, Attempting to log out");
+		}
+		catch(org.openqa.selenium.TimeoutException ex)
+		{
+			System.out.println("Optanon-alert was not shown, Attempting to log out");
+		}
+		
 		homePage.logoutProcess();
 	}
 	
