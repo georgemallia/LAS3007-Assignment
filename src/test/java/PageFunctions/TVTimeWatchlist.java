@@ -83,7 +83,8 @@ public class TVTimeWatchlist
 				} 
 		    	catch (NoSuchElementException e) 
 		    	{
-		    		continue;
+		    		//continue;
+		    		break;
 				}
 		    }
 		}
@@ -117,7 +118,8 @@ public class TVTimeWatchlist
 			} 
 	    	catch (NoSuchElementException e) 
 	    	{
-	    		continue;
+	    		//continue;
+	    		break;
 			}
 	    }
 		

@@ -50,6 +50,7 @@ public class TVTimeShow
 	//This method opens the show's next episode to watch
 	public void openShow(String showName)
 	{
+		//utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
 		WebElement showPoster;
 		WebElement showList = driver.findElement(By.xpath("//*[@id=\"to-watch\"]/ul")); 
 		List<WebElement> li_All = showList.findElements(By.tagName("li"));
@@ -83,7 +84,7 @@ public class TVTimeShow
 	public void openShowDescription(String showName)
 	{
 		System.out.println("Attempting to open show description");
-		
+		//utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
 		WebElement showList = driver.findElement(By.xpath("//*[@id=\"to-watch\"]/ul")); 
 		List<WebElement> li_All = showList.findElements(By.tagName("li"));
 	    System.out.println(li_All.size());

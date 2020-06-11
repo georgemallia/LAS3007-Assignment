@@ -193,7 +193,12 @@ public class WatchlistSteps
 	{
 		List<String> showsFound = new ArrayList<String>();
 		watchlistPage = new TVTimeWatchlist(driver);
-		watchlistPage.visitWatchListPage();
+		
+		for(int i = 0; i<2; i++)
+		{
+			watchlistPage.visitWatchListPage();
+		}
+		
 		showsFound = watchlistPage.getShowList();
 		
 		System.out.println("the shows sould be visible under his watchlist");
