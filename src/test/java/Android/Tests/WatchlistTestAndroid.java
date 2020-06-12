@@ -109,5 +109,4 @@ public class WatchlistTestAndroid extends BaseTestAndroid
 			e.printStackTrace();
 		}
 	}	
-
 }

@@ -57,7 +57,4 @@ public class BaseTestAndroid
 	{
 		driver.quit();
 	}
-	
-	
-	
 }

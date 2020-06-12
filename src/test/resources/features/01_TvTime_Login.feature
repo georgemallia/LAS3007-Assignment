@@ -1,12 +1,12 @@
 Feature: TvTime_Login
 
-  Scenario: Sucessful Signin
+  Scenario: Successful Signin
     Given I try to sign in
     When I enter the correct credentials
     And click the sign in button
     Then I should be logged in
 
-  Scenario: Sucessful Login
+  Scenario: Successful Login
     Given I try to log in
     When I enter my login details
     And click the log in button

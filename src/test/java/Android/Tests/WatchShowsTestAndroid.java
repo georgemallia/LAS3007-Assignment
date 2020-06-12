@@ -68,6 +68,4 @@ public class WatchShowsTestAndroid extends BaseTestAndroid
 			e.printStackTrace();
 		}
 	}
-	
-
 }
