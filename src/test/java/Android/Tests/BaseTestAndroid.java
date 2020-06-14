@@ -33,6 +33,7 @@ public class BaseTestAndroid
 	@BeforeAll
 	public static void prepareCapabilities() throws Exception 
 	{
+		System.out.println("Starting Android Tests");
 		dc = new DesiredCapabilities();
 		dc.setCapability(PLATFORM_NAME, propertyReader.getPropertyValue("platform_name"));
 		dc.setCapability(PLATFORM_VERSION, propertyReader.getPropertyValue("platform_version"));

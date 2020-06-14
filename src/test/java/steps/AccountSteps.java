@@ -53,7 +53,6 @@ public class AccountSteps
 		}
 		
 		homePage = loginPage.loginBtnClick();
-		//utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
 		utils.waitForPageToSettleById("home-link", driver);
 	}
 	
@@ -73,7 +72,7 @@ public class AccountSteps
 	}
 	
 	
-	@When("he modfies account information")
+	@When("he modifies account information")
 	public void He_modifies_account_information()
 	{
 		try 
@@ -98,13 +97,12 @@ public class AccountSteps
 		{
 			assertEquals(details.get(0).getText(), propFileReader.getPropertyValue("month"));
 			assertEquals(details.get(2).getText(), propFileReader.getPropertyValue("year"));
+			//DAY could not be asserted due to a bug found in the account page. Documented under Limitations section.
 			//assertEquals(details.get(1).getText(), propFileReader.getPropertyValue("day"));
 		} 
 		catch (IOException e) 
 		{
 			e.printStackTrace();
 		}
-		
 	}
-	
 }

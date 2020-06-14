@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
-import org.junit.jupiter.api.RepeatedTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,12 +66,6 @@ public class WatchEpisodeSteps
 		homePage = loginPage.loginBtnClick();
 		utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
 		utils.waitForPageToSettleById("home-link", driver);
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
 	
 	
@@ -168,7 +161,7 @@ public class WatchEpisodeSteps
 	{
 		showPage.unWatchSeason(); 
 	}
-//.optanon-alert-box-wrapper
+
 	@When("he marks the episode as watched")
 	public void he_marks_the_episode_as_watched()
 	{
@@ -232,5 +225,4 @@ public class WatchEpisodeSteps
 		String result = showPage.checkSeasonUnWatched();
 		assertEquals("Season is not watched", result);
 	}
-	
 }

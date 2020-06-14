@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
-import org.junit.jupiter.api.RepeatedTest;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
@@ -62,13 +61,6 @@ public class SearchSteps
 			System.out.println("Could Not find side nav. /n Attempting to find home BTN");
 			utils.waitForPageToSettleById("home-link", driver);
 		}
-		
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
 	
 	
@@ -119,7 +111,6 @@ public class SearchSteps
 	}
 	
 	
-	
 	@Then("results should be displayed")
 	public void results_should_be_displayed()
 	{
@@ -132,10 +123,8 @@ public class SearchSteps
 	@Then("no results should be displayed")
 	public void no_results_should_be_displayed()
 	{
-		//utils.waitForPageToSettleById("search-results-container", driver);
 		utils.waitForPageToSettleByXpath("//div[@id='search-results-container']/div", driver);
 		assertTrue(searchPage.noresultsTab.isDisplayed());
 		assertTrue(searchPage.getNumberOfResults() == 0);
 	}
-
 }

@@ -38,10 +38,8 @@ public class ProfileActivity
 		//elemet that contains all shows 
 		MobileElement showsList = (MobileElement) mobileDriver.findElementById("com.tozelabs.tvshowtime:id/ptrLayout");
 		
-		
 		rtnShows = showsList.findElements(By.id("com.tozelabs.tvshowtime:id/entityName"));
 		
 		return rtnShows;
 	}
-	
 }

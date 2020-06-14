@@ -19,11 +19,9 @@ public class TVTimeLogin
 	PropertyFileReader propFileReader;
 	CommonUtils utils;
 	
-	//@FindBy(xpath="//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[3]/div[2]/button")
 	@FindBy(css=".views__SquareButtonView-x7wsxy-0")
 	private WebElement signinBtn;
 	
-	//@FindBy(xpath="//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[3]/div[1]/li/a")
 	@FindBy(css=".views__HideOnMobileWrapper-sc-12vav2z-0 .views__NavLink-sc-1tygrp6-1")
 	private WebElement loginBtn;
 	
@@ -34,15 +32,11 @@ public class TVTimeLogin
 	@FindBy(name="password")
 	private WebElement passwordFld;
 
-	//@FindBy(xpath="//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[3]/div[2]/div/div/div/form/div[3]/input")
 	@FindBy(css=".views__SubmitButton-x7wsxy-7")
 	private WebElement finalSigninBtn;
 	
-	//@FindBy(xpath="//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[3]/div[1]/div/div/div/form/div[3]/input")
 	@FindBy(css=".views__SubmitButton-hnsgg9-7")
 	private WebElement finalLoginBtn;
-	
-
 	
 	public TVTimeLogin(WebDriver driver) 
 	{
@@ -71,7 +65,6 @@ public class TVTimeLogin
 			
 			usernameFld.sendKeys(username);
 			passwordFld.sendKeys(password);
-
 		} 
 		catch (Exception e) 
 		{
@@ -117,6 +110,4 @@ public class TVTimeLogin
 			e.printStackTrace();
 		}
 	}
-	
-
 }

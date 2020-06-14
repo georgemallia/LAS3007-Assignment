@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import Android.Activities.LoginActivity;
@@ -24,8 +23,9 @@ public class WatchShowsTestAndroid extends BaseTestAndroid
 	WatchListActivity watchlist_activity;
 	
 	@Test
-	public void addShow()
+	public void watchEpisode()
 	{
+		System.out.println("Starting Watch Episode Test");
 		boolean watched;
 		
 		try 
@@ -41,6 +41,7 @@ public class WatchShowsTestAndroid extends BaseTestAndroid
 			watched = show_activity.episodeRatingsVisible();
 			
 			assertTrue(watched);
+			System.out.println("Watch Episode Test Finished");
 		}
 		catch (IOException e) 
 		{
@@ -51,6 +52,7 @@ public class WatchShowsTestAndroid extends BaseTestAndroid
 	@Test
 	public void scrollToWatchedHistory()
 	{
+		System.out.println("Starting Scrolling to Watch History Test");
 		try 
 		{
 			new LoginActivity(driver).signinProcess(propertyReader.getPropertyValue("username"), propertyReader.getPropertyValue("password"));
@@ -62,6 +64,7 @@ public class WatchShowsTestAndroid extends BaseTestAndroid
 			MobileElement watchedHistoryTab = (MobileElement) driver.findElementById("com.tozelabs.tvshowtime:id/headerText");
 			
 			assertTrue(watchedHistoryTab.isDisplayed());
+			System.out.println("Scrolling to Watch History Test Finished");
 		}
 		catch (IOException e) 
 		{

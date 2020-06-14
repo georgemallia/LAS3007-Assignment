@@ -36,6 +36,7 @@ public class WatchlistTestAndroid extends BaseTestAndroid
 	@Test
 	public void addShow()
 	{
+		System.out.println("Starting Add Show Test");
 		try 
 		{
 			new LoginActivity(driver).signinProcess(propertyReader.getPropertyValue("username"), propertyReader.getPropertyValue("password"));
@@ -57,6 +58,7 @@ public class WatchlistTestAndroid extends BaseTestAndroid
 			//assert showlist contains show
 			assertEquals("ADDED!", addResult);
 			assertTrue(showsList.contains(showName.toLowerCase().trim()));
+			System.out.println("Add Show Test Finished");
 		}
 		catch (IOException e) 
 		{
@@ -67,6 +69,7 @@ public class WatchlistTestAndroid extends BaseTestAndroid
 	@Test
 	public void addMultipleShows()
 	{
+		System.out.println("Starting Add Multiple Shows Test");
 		addResults = new ArrayList<String>();
 		
 		try 
@@ -103,6 +106,7 @@ public class WatchlistTestAndroid extends BaseTestAndroid
 			
 			assertTrue(allAdded);
 			assertTrue(showsList.stream().anyMatch(shows::contains));
+			System.out.println("Add Multiple Shows Test finished");
 		}
 		catch (IOException e) 
 		{

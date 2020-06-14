@@ -1,10 +1,8 @@
 package PageFunctions;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,12 +32,9 @@ public class TVTimeSearch
 	private WebElement displayTitleTxt;
 	
 	@FindBy(css=".follow-btn")
-	//@FindBy(xpath="//*[@id=\"top-banner\"]/div/div[3]/div/div/div/a[1]")
-	//@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div/div[4]/div/div[3]/div/div/div/a[1]")
 	private WebElement addShowBtn;
 	
 	private WebElement showBtn;
-	
 	
 	public TVTimeSearch(WebDriver driver) 
 	{
@@ -86,7 +81,6 @@ public class TVTimeSearch
 	    	}	    	
 	    	catch (NoSuchElementException e) 
 	    	{
-	    		//continue;
 	    		break;
 			}
 	    }
@@ -95,11 +89,6 @@ public class TVTimeSearch
 		System.out.println("Attempting to click add btn");
 		utils.waitForElementToBeClickableByCss(".follow-btn", driver);
 		addShowBtn.click();
-		
-		//if(!addShowBtn.getAttribute("class").equals("cta-btn follow-btn   active"))
-		//{
-		//	addShowBtn.click();
-		//}
 
 		System.out.println("Add btn clicked");
 	}
@@ -130,13 +119,9 @@ public class TVTimeSearch
 			} 
 	    	catch (NoSuchElementException e) 
 	    	{
-	    		//continue;
 	    		break;
 			}
 	    }
-
 		return "Show Not Added";
 	}
-	
-	
 }

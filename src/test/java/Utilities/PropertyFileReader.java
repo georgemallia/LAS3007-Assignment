@@ -13,7 +13,7 @@ public class PropertyFileReader
 	
 	public PropertyFileReader()
 	{
-		
+
 	}
 	
 	public String getPropertyValue(String propName) throws IOException
@@ -37,5 +37,4 @@ public class PropertyFileReader
 		}
 		return result;
 	}
-	
 }

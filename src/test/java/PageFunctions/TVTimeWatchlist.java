@@ -48,12 +48,6 @@ public class TVTimeWatchlist
 		catch (Exception e) 
 		{
 			utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[3]/div/div[2]/div/div", driver);
-			
-			//WebElement noShowsBanner = driver.findElement(By.xpath("//*[@id=\"container\"]/div[3]/div[3]/div/div[2]/div/div/div/h2"));
-		//	if(noShowsBanner.getText().equalsIgnoreCase("What shows are you watching?"))
-			//{
-			//	return "No shows found";
-			//}
 		}
 		return "";
 	}
@@ -64,7 +58,6 @@ public class TVTimeWatchlist
 		System.out.println("Attempting to get Show List");
 		List<String> myShows = new ArrayList<String>();
 		
-		//WebElement showList = driver.findElement(By.xpath("//*[@id=\"to-watch\"]/ul")); 
 		List<WebElement> ui_All = driver.findElements(By.xpath("//*[@id=\"to-watch\"]/ul")); 
 		
 		for(int j = 0; j < ui_All.size(); j++)
@@ -83,7 +76,6 @@ public class TVTimeWatchlist
 				} 
 		    	catch (NoSuchElementException e) 
 		    	{
-		    		//continue;
 		    		break;
 				}
 		    }
@@ -114,17 +106,13 @@ public class TVTimeWatchlist
 					System.out.println("Returning show is under watch next");
 					return "Show is under Watch Next";
 				}
-				
 			} 
 	    	catch (NoSuchElementException e) 
 	    	{
-	    		//continue;
 	    		break;
 			}
 	    }
-		
 		//default
 		return "";
 	}
-	
 }

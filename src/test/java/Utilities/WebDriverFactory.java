@@ -3,7 +3,6 @@ package Utilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
 public class WebDriverFactory 
@@ -11,6 +10,7 @@ public class WebDriverFactory
 	private static String PATH = "src/test/resources/drivers/";
 	static WebDriver driver;
 	
+	//CLASS ONLY USED BEFORE IMPLEMENTATION OF SELEINUM GRID.
 	public static WebDriver createWebDriver() 
 	{
 		String webdriver = System.getProperty("browser", "firefox");

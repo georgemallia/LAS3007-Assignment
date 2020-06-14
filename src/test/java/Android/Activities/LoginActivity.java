@@ -10,7 +10,6 @@ public class LoginActivity
 {
 	private AppiumDriver<MobileElement> mobileDriver;
 	
-	private By signinBy = By.id("com.tozelabs.tvshowtime:id/btLogin");
 	private By popupBy = By.id("com.tozelabs.tvshowtime:id/md_buttonDefaultPositive");
 	private By signLabelBy = By.id("com.tozelabs.tvshowtime:id/toolbar");
 	private By btNavBy = By.id("com.tozelabs.tvshowtime:id/bottomNavigation");
@@ -33,11 +32,6 @@ public class LoginActivity
 			MobileElement el1 = (MobileElement) mobileDriver.findElementById("com.tozelabs.tvshowtime:id/md_buttonDefaultPositive");
 			el1.click();
 		}
-		
-		
-		//sign in Button
-	//	MobileElement signinBtn = (MobileElement) mobileDriver.findElementById("com.tozelabs.tvshowtime:id/btLogin");
-	//	signinBtn.click();
 
 		//wait for username field to be present
 		utils.waitForPresence(signLabelBy, mobileDriver);
@@ -57,6 +51,4 @@ public class LoginActivity
 		//Wait for watchlist tab to be visible
 		utils.waitForPresence(btNavBy, mobileDriver);
 	}
-	
-
 }

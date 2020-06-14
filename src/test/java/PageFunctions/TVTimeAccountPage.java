@@ -80,8 +80,7 @@ public class TVTimeAccountPage
 		monthDropDown = new Select(driver.findElement(By.name("birth[month]")));
 		dayDropDown = new Select(driver.findElement(By.name("birth[day]")));
 		yearDropDown = new Select(driver.findElement(By.name("birth[year]")));
-		
-		
+
 		WebElement monthOption = monthDropDown.getFirstSelectedOption();
 		WebElement dayOption = dayDropDown.getFirstSelectedOption();
 		WebElement yearOption = yearDropDown.getFirstSelectedOption();

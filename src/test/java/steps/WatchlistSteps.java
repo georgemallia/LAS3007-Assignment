@@ -66,12 +66,6 @@ public class WatchlistSteps
 		homePage = loginPage.loginBtnClick();
 		utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
 		utils.waitForPageToSettleById("home-link", driver);
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
 	
 	
@@ -131,7 +125,6 @@ public class WatchlistSteps
 				
 				searchPage.addShow(s);
 			}
-			
 		}
 		catch (Exception e) 
 		{
@@ -148,8 +141,6 @@ public class WatchlistSteps
 		List<String> showsFound = new ArrayList<String>();
 		watchlistPage = new TVTimeWatchlist(driver);
 		watchlistPage.visitWatchListPage();
-		
-		
 		
 		showsFound = watchlistPage.getShowList();
 		
@@ -168,7 +159,7 @@ public class WatchlistSteps
 		assertEquals("Show Is Already Added", addedResult);
 	}
 	
-	@Then("the show sould not be visible under his watchlist")
+	@Then("the show should not be visible under his watchlist")
 	public void the_show_should_not_be_visible_under_his_watchlist()
 	{
 		watchlistPage = new TVTimeWatchlist(driver);
@@ -177,18 +168,16 @@ public class WatchlistSteps
 		
 		List<String> showslist = watchlistPage.getShowList();
 		
-		
-		//TODO: REMOVE AFTER TESTING PURPOSES
-		System.out.println("the show sould not be visible under his watchlist");
+		System.out.println("The show sould not be visible under his watchlist");
 		for(String s : showslist)
 		{
-			System.out.println(s);
+			System.out.println("Shows Found under his watchlist:" + s);
 		}
 		
 		assertFalse(showslist.contains(searchInput));
 	}
 	
-	@Then("the shows sould be visible under his watchlist")
+	@Then("the shows should be visible under his watchlist")
 	public void the_shows_should_be_visible_under_his_watchlist()
 	{
 		List<String> showsFound = new ArrayList<String>();
@@ -201,15 +190,12 @@ public class WatchlistSteps
 		
 		showsFound = watchlistPage.getShowList();
 		
-		System.out.println("the shows sould be visible under his watchlist");
+		System.out.println("The shows sould be visible under his watchlist");
 		for(String s : showsFound)
 		{
-			System.out.println(s);
+			System.out.println("Shows Found under his watchlist:" + s);
 		}
 		
 		assertTrue(showsFound.containsAll(showsList));
 	}
-	
-	
-
 }

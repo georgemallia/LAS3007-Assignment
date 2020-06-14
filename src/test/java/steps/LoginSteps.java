@@ -7,14 +7,11 @@ import io.cucumber.java.en.When;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.RepeatedTest;
 
 import java.io.IOException;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-
-import com.sun.corba.se.impl.orbutil.threadpool.TimeoutException;
 
 import PageFunctions.TVTimeHomePage;
 import PageFunctions.TVTimeLogin;
@@ -145,7 +142,6 @@ public class LoginSteps
 	@Then("I should be logged in")
 	public void i_should_be_logged_in() 
 	{
-		//utils.waitForPageToSettleByXpath("//*[@id=\"container\"]/div[3]/div[2]/div", driver);
 		utils.waitForPageToSettleById("home-link", driver);
 		assertTrue(homePage.isLoggedIn());
 	}
@@ -159,9 +155,6 @@ public class LoginSteps
 	@Then("I should be logged out")
 	public void I_should_be_logged_out()
 	{
-		//waiting for signout page nav to load
-	//	utils.waitForPageToSettleByXpath("//*[@id=\"gatsby-focus-wrapper\"]/div/nav/div[1]", driver);
-		
 		utils.waitForPageToSettleByXpath("/html/body/div[1]/div/div/nav/div[1]", driver);	
 		assertFalse(homePage.isLoggedIn());
 	}

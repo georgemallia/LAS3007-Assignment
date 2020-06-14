@@ -7,11 +7,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
@@ -35,9 +32,7 @@ public class TVTimeShow
 	private WebElement watchSeasonBtn;
 	
 	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div/div[9]/div/div[1]/div[1]/div[2]/div/div[1]/div")
-	//@FindBy(css=".watched")
 	private WebElement unWatchSeasonBtn;
-	
 		
 	public TVTimeShow(WebDriver driver)
 	{
@@ -50,7 +45,6 @@ public class TVTimeShow
 	//This method opens the show's next episode to watch
 	public void openShow(String showName)
 	{
-		//utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
 		WebElement showPoster;
 		WebElement showList = driver.findElement(By.xpath("//*[@id=\"to-watch\"]/ul")); 
 		List<WebElement> li_All = showList.findElements(By.tagName("li"));
@@ -74,7 +68,6 @@ public class TVTimeShow
 			} 
 	    	catch (NoSuchElementException e) 
 	    	{
-	    		//continue;
 	    		break;
 			}
 	    }
@@ -84,7 +77,6 @@ public class TVTimeShow
 	public void openShowDescription(String showName)
 	{
 		System.out.println("Attempting to open show description");
-		//utils.waitForPageToSettleByCSS(".optanon-alert-box-wrapper", driver);
 		WebElement showList = driver.findElement(By.xpath("//*[@id=\"to-watch\"]/ul")); 
 		List<WebElement> li_All = showList.findElements(By.tagName("li"));
 	    System.out.println(li_All.size());
@@ -100,15 +92,16 @@ public class TVTimeShow
 				if(showCmp.equalsIgnoreCase(showName))
 				{
 					utils.waitForElementToBeClickableByXpath("/html/body/div[3]/div[3]/div/div[2]/div/div/section/ul/li[" + i + "]/div[3]/a", driver);
+				
 					System.out.println("Attempting to open show");
 					show.click();
 					System.out.println("Show description opening..");
+				
 					break;
 				}
 			} 
 	    	catch (NoSuchElementException e) 
 	    	{
-	    		//continue;
 	    		break;
 			}
 	    }
@@ -247,7 +240,6 @@ public class TVTimeShow
 
 	    for(WebElement li : li_All)
 	    {
-	    	
 	    	System.out.println("Current LI Text: " + li.getText());
 	    	System.out.println("currentselectedSeason Text: " +  currentSelectedSeason.getText());
 	    		    	
@@ -268,9 +260,7 @@ public class TVTimeShow
 	    		}
 	    	}
 	    }
-		
 		//default
 	    return "";
 	}
-	
 }

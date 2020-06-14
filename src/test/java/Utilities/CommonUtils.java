@@ -43,7 +43,6 @@ public class CommonUtils
 	
 	
 	
-	
 	public void waitForPageToSettleByCSS(String ByLocator, WebDriver driver) 
 	{   
 		WebDriverWait wait = new WebDriverWait(driver, 20);
@@ -68,7 +67,6 @@ public class CommonUtils
 				                .stream()
 				                .map(s -> s.toLowerCase().trim())
 				                .collect(Collectors.toList());
-		
 		return showList;
 	}
 	
@@ -92,5 +90,4 @@ public class CommonUtils
 			}
 		});
 	}
-	
 }

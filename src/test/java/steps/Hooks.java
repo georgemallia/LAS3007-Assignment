@@ -5,15 +5,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.remote.RemoteWebElement;
 
 import Utilities.PropertyFileReader;
-import Utilities.WebDriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
@@ -36,8 +32,6 @@ public class Hooks
 	public void openBrowser() throws MalformedURLException, IOException 
 	{
 		System.out.println("Hook Class: Creating Driver");
-		//System.setProperty("browser", "firefox");	
-		//driver = WebDriverFactory.createWebDriver();
 		
 		gridURL = new URL(propertyReader.getPropertyValue("gridUrl"));
 		
