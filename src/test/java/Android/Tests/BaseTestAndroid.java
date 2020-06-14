@@ -10,6 +10,7 @@ import static io.appium.java_client.remote.MobileCapabilityType.UDID;
 import static org.openqa.selenium.remote.CapabilityType.PLATFORM_NAME;
 
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -51,6 +52,7 @@ public class BaseTestAndroid
 	public void setUp() 
 	{
 		driver = new AndroidDriver<>(url, dc);
+		driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
 	}
 	
 	@AfterEach

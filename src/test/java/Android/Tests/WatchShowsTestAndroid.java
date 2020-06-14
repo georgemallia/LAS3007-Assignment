@@ -4,7 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import Android.Activities.LoginActivity;
 import Android.Activities.SearchActivity;
@@ -14,6 +17,7 @@ import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
 import io.appium.java_client.MobileElement;
 
+@TestMethodOrder(OrderAnnotation.class)
 public class WatchShowsTestAndroid extends BaseTestAndroid
 {
 	PropertyFileReader propertyReader = new PropertyFileReader();
@@ -23,6 +27,7 @@ public class WatchShowsTestAndroid extends BaseTestAndroid
 	WatchListActivity watchlist_activity;
 	
 	@Test
+	@Order(1)
 	public void watchEpisode()
 	{
 		System.out.println("Starting Watch Episode Test");
@@ -50,6 +55,7 @@ public class WatchShowsTestAndroid extends BaseTestAndroid
 	}
 	
 	@Test
+	@Order(2)
 	public void scrollToWatchedHistory()
 	{
 		System.out.println("Starting Scrolling to Watch History Test");

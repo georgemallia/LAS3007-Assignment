@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
 import Android.Activities.LoginActivity;
 import Android.Activities.SearchActivity;
@@ -16,7 +19,7 @@ import Android.Activities.WatchListActivity;
 import Utilities.CommonUtils;
 import Utilities.PropertyFileReader;
 
-//Feature 1 Android Test
+@TestMethodOrder(OrderAnnotation.class)
 public class WatchlistTestAndroid extends BaseTestAndroid
 {
 	PropertyFileReader propertyReader = new PropertyFileReader();
@@ -34,6 +37,7 @@ public class WatchlistTestAndroid extends BaseTestAndroid
 	List<String> addResults;
 	
 	@Test
+	@Order(1)
 	public void addShow()
 	{
 		System.out.println("Starting Add Show Test");
@@ -67,6 +71,7 @@ public class WatchlistTestAndroid extends BaseTestAndroid
 	}	
 	
 	@Test
+	@Order(2)
 	public void addMultipleShows()
 	{
 		System.out.println("Starting Add Multiple Shows Test");
